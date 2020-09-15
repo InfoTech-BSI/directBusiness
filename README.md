@@ -1,4 +1,4 @@
-# directBusiness
+# Direct Business
 
 Projeto desenvolvido durante o curso de Sistemas de Informação na disciplina de Projeto Integrador (4º semestre - 2020)
 
