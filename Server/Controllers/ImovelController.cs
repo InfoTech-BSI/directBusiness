@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DirectBusiness.Server;
+using DirectBusiness.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,7 @@ public class ImovelController : Controller{
         try
         {
             var novoImovel = new Imovel{
-                idImovel = imovel.IdImovel,
+                IdImovel = imovel.IdImovel,
                 IdTipoImovel = imovel.IdTipoImovel,
                 IdPessoa = imovel.IdPessoa,
                 Matricula = imovel.Matricula,
@@ -39,11 +40,14 @@ public class ImovelController : Controller{
                 UF = imovel.UF,
                 Valor = imovel.Valor,
                 Status = imovel.Status,
-            }
+            };
+
+            banco.Add(novoImovel);
+            await banco.SaveChangesAsync();
+            return Ok();
         }
         catch (Exception e)
         {
-            
             return View(e);
         }
     }

@@ -1,7 +1,7 @@
 using DirectBusiness.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server
+namespace DirectBusiness.Server
 {
     public class AppDbContext : DbContext
     {
