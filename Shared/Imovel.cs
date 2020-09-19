@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared
+namespace DirectBusiness.Shared
 {
     public class Imovel
     {
@@ -11,8 +11,9 @@ namespace Shared
         public int Matricula { get; set; }
         [Required(ErrorMessage = "Descrição é obrigatório")] 
         public string Descricao { get; set; }
+
         [Required(ErrorMessage = "Logradouro é obrigatório")] 
-        public string Logradoudo { get; set; }
+        public string Logradouro { get; set; }
         [Required(ErrorMessage = "Bairro é obrigatório")] 
         public string Bairro { get; set; }
         [Required(ErrorMessage = "Número é obrigatório")] 
