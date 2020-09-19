@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared
+namespace DirectBusiness.Shared
 {
     public class Imovel
     {
@@ -10,7 +10,7 @@ namespace Shared
         public int IdPessoa { get; set; }
         public int Matricula { get; set; }
         public string Descricao { get; set; }
-        public string Logradoudo { get; set; }
+        public string Logradouro { get; set; }
         public string Bairro { get; set; }
         public int Numero { get; set; }
         public string Cidade { get; set; }
