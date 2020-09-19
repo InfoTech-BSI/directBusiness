@@ -23,6 +23,7 @@ namespace Shared
 
         [Required(ErrorMessage = "Nome é obrigatório")]
 
+
         public string Nome { get; set; }
     }
 }
