@@ -1,0 +1,237 @@
+@page "/imoveis"
+<div class="conteiner text-center">
+    <h1 class="ml-5 text-left"> Buscar imóveis </h1>
+    <form class="form-inline justify-content-center">
+        <div class="form-group">
+            <input type="text" class="form-control" id="BuscaCidade" name="cidade" placeholder="Cidade">
+        </div>
+        <div class="form-group ml-2">
+            <input type="text" class="form-control" id="BuscaBairro" name="bairro" placeholder="Bairro">
+        </div>
+        <div class="form-group ml-2">
+            <select class="form-control" id="BuscaValor" name="valor">
+                <option> 800 reais </option>
+                <option> 1200 reais </option>
+                <option> 2400 reais </option>
+                <option> 3000 reais </option>
+                <option> 4000 reais </option>
+                <option> Ver todos </option>
+            </select>
+        </div>
+        <div class="form-group ml-2">
+            <select class="form-control" name="tipoImovel" id="tipoImovel">
+                <option> Tipo de imóvel </option>
+                <option> Casa </option>
+                <option> Apartamento </option>
+                <option> Chácara </option>
+            </select>
+        </div>
+        <div class="form-group ml-2">
+            <select class="form-control" name="tipoImovel" id="tipoImovel">
+                <option> Tipo de contrato </option>
+                <option> Aluguel </option>
+                <option> Venda </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary ml-2"> Buscar </button>
+    </form>
+    <br>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=1" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 3 Quartos </li>
+                                <li class="list-group-item"> 2 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 2 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=2" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a short card.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Suites </li>
+                                <li class="list-group-item"> 1 Quarto </li>
+                                <li class="list-group-item"> 3 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 3 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=3" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Suites </li>
+                                <li class="list-group-item"> 1 Quarto </li>
+                                <li class="list-group-item"> 3 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 3 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=4" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Suites </li>
+                                <li class="list-group-item"> 2 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 2 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=5" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a short card.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 1 Quarto </li>
+                                <li class="list-group-item"> 1 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 1 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=6" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Quarto </li>
+                                <li class="list-group-item"> 1 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 1 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=7" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Quarto </li>
+                                <li class="list-group-item"> 1 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 1 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=8" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a short card.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Quarto </li>
+                                <li class="list-group-item"> 1 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 1 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=9" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="w-100">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"> 2 Quarto </li>
+                                <li class="list-group-item"> 1 Banheiros </li>
+                                <li class="list-group-item"> Vaga para 1 carros </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+        </button>
+        <button type="button" class="btn btn-secondary active">1</button>
+        <button type="button" class="btn btn-secondary">2</button>
+        <button type="button" class="btn btn-secondary">3</button>
+        <button type="button" class="btn btn-secondary">4</button>
+        <button type="button" class="btn btn-secondary">
+            <i class="fas fa-arrow-alt-circle-right"></i>
+        </button>
+    </div>
+</div>

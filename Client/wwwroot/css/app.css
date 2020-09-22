@@ -182,3 +182,9 @@ app {
     left: auto !important;
     right: 0px;
 }
+
+/* Exibir linhas dentro do card de imóveis */
+.list-group-item{
+    margin-bottom: 0px;
+    background: unset !important;
+}
