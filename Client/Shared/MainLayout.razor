@@ -33,6 +33,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#"> Anunciar </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logar" data-toggle="modal" data-target="#loginModal"> Login </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Minha conta
@@ -134,4 +137,49 @@
             © 2020 Direct Business
         </div>
     </footer>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h1 class="display-5 text-center text-uppercase"> Login </h1>
+            <form>
+                <div class="form-group">
+                    <label for="inputEmail"> Email ou CPF/CNPJ </label>
+                    <input type="text" placeholder="email@teste.com ou 123.456.789-98" class="form-control" id="inputEmail">
+                </div>
+                <div class="form-group">
+                    <label for="inputSenha"> Senha </label>
+                    <input type="password" placeholder="Sua senha" class="form-control" id="inputSenha">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1"> Deixar a conta salva nesse dispositivo </label>
+                </div>
+                <div class="text-center">
+                    <p> ou </p>
+                    <a href="#" class="btn cor-google btn-custom">
+                        <span class="fab fa-google btn-icon"></span>
+                        Acessar via Google
+                    </a>
+                    <a href="#" class="btn cor-facebook btn-custom">
+                        <span class="fab fa-facebook btn-icon"></span>
+                        Acessar via Facebook
+                    </a>
+                    <p> ou </p>
+                    <a href="#!"><h4> Crie uma conta </h4></a>
+                    <br>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
+                    <button type="submit" class="btn btn-primary"> Fazer login </button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
 </div>

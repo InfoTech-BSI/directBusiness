@@ -177,6 +177,16 @@ app {
     }
 }
 
+/* Cores */
+.cor-facebook{
+    background-color: #4064AC !important;
+    color: #fff !important;
+}
+.cor-google{
+    background-color: #4081EC !important;
+    color: #fff !important;
+}
+
 /* NavBar para direita */
 .ml-auto .dropdown-menu {
     left: auto !important;
@@ -187,4 +197,27 @@ app {
 .list-group-item{
     margin-bottom: 0px;
     background: unset !important;
+}
+
+.modal.fade.show{
+    background-color: rgb(73, 73, 75, 0.7);
+}
+
+.modal-header{
+    border-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.modal-body{
+    padding-top: 0px !important;
+}
+
+.btn-custom {
+	padding: 1px 15px 3px 2px;
+	border-radius: 50px;
+    margin-bottom: 5px;
+}
+
+.btn-icon {
+	padding: 8px;
 }
