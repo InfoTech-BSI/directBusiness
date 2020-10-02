@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared
+namespace DirectBusiness.Shared
 {
     public class TipoContrato
     {

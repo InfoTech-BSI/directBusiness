@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared
+namespace DirectBusiness.Shared
 {
 
     public class Pessoa
@@ -18,11 +18,9 @@ namespace Shared
         public int Telefone { get; set; }
 
         [Required(ErrorMessage = "Endereço é obrigatório")]
-
         public string Endereco { get; set; }
 
         [Required(ErrorMessage = "Bairro é obrigatório")]
-
         public string Bairro { get; set; }
 
         [Required(ErrorMessage = "Número é obrigatório")]
@@ -39,13 +37,9 @@ namespace Shared
         public string Uf { get; set; }
 
         [Required(ErrorMessage = "Login é obrigatório")]
-
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatório")]
-
         public string Senha { get; set; }
-
-
     }
 }
