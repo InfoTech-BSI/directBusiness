@@ -1,5 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+<<<<<<< HEAD
 using System.ComponentModel.DataAnnotations.Schema;
+=======
+using Shared;
+>>>>>>> 8d6d1633c46882ae405cc9c4317c72d89ab8e957
 
 namespace DirectBusiness.Shared
 {
@@ -7,16 +11,18 @@ namespace DirectBusiness.Shared
     {
         [Key]
         public int IdImovel { get; set; }
+<<<<<<< HEAD
         public int IdTipoImovel { get; set; }
         public TipoImovel TipoImovel { get; set; }
         public int IdPessoa { get; set; }
         public Pessoa Pessoa { get; set; }
 
+=======
+>>>>>>> 8d6d1633c46882ae405cc9c4317c72d89ab8e957
         [Required(ErrorMessage = "Matrícula é obrigatório")] 
         public int Matricula { get; set; }
         [Required(ErrorMessage = "Descrição é obrigatório")] 
         public string Descricao { get; set; }
-
         [Required(ErrorMessage = "Logradouro é obrigatório")] 
         public string Logradouro { get; set; }
         [Required(ErrorMessage = "Bairro é obrigatório")] 
@@ -34,5 +40,11 @@ namespace DirectBusiness.Shared
         public double Valor { get; set; }
         [Required(ErrorMessage = "Status é obrigatório")] 
         public string Status { get; set; }
+
+        public int IdTipoImovel { get; set; }
+        public TipoImovel TipoImovel { get; set; }
+
+        public int IdPessoa { get; set; }
+        public Pessoa Pessoa { get; set; }
     }
 }

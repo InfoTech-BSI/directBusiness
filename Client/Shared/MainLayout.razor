@@ -5,10 +5,10 @@
 </div> *@
 
 <div class="main">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark navAzul">
         <a class="navbar-brand" href="#">
-            <img src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            DirectBusiness
+            <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            <span class="titulo">Direct Business</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,6 +59,7 @@
     <div class="content">
         @Body
     </div>
+
     <footer class="page-footer font-small bg-dark text-white pt-4 mt-2">
         <ul class="list-unstyled list-inline text-center">
             <li class="row justify-content-center align-items-center m-0">
@@ -158,6 +159,9 @@
                     <label for="inputSenha"> Senha </label>
                     <input type="password" placeholder="Sua senha" class="form-control" id="inputSenha">
                 </div>
+                <div class="form-group">
+                    <a href="#modalRecuperarSenha" data-toggle="modal" data-target="#modalRecuperarSenha">Esqueci a senha</a>
+                </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1"> Deixar a conta salva nesse dispositivo </label>
@@ -176,7 +180,31 @@
                     <a href="#!"><h4> Crie uma conta </h4></a>
                     <br>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
-                    <button type="submit" class="btn btn-primary"> Fazer login </button>
+                    <button type="submit" class="btn btnAzul"> Fazer login </button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalRecuperarSenha" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h4 class="display-5 text-center text-uppercase">Recuperar senha</h4>
+            <form>
+                <div class="form-group">
+                    <label for="inputRecuperarEmail">Informe seu email</label>
+                    <input type="text" placeholder="email@teste.com" class="form-control" id="inputRecuperarEmail">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btnAzul">Confirmar</button>
                 </div>
             </form>
         </div>
