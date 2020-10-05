@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace DirectBusiness.Server
@@ -22,7 +23,8 @@ namespace DirectBusiness.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<AppDbContext>(o => 
+                o.UseMySql(Configuration.GetConnectionString("Conexao1")));
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

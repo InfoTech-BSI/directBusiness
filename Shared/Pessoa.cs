@@ -1,11 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Shared
+namespace DirectBusiness.Shared
 {
 
     public class Pessoa
     {
+        [Key]
         public int IdPessoa { get; set; }
 
         [Required(ErrorMessage = "Email é obrigatório")]
@@ -26,7 +27,6 @@ namespace Shared
         public string Bairro { get; set; }
 
         [Required(ErrorMessage = "Número é obrigatório")]
-        [MaxLength(2, ErrorMessage="UF deve conter, no máximo, 2 caracteres")]
         public int Numero { get; set; }
 
         [Required(ErrorMessage = "Cidade é obrigatório")]
@@ -36,6 +36,7 @@ namespace Shared
         public string Complemento { get; set; }
 
         [Required(ErrorMessage = "Uf é obrigatório")]
+        [MaxLength(2, ErrorMessage="UF deve conter, no máximo, 2 caracteres")]
         public string Uf { get; set; }
 
         [Required(ErrorMessage = "Login é obrigatório")]
