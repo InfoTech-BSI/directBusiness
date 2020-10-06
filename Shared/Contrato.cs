@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DirectBusiness.Shared
 {
-
     public class Contrato
     {   
         [Key]
