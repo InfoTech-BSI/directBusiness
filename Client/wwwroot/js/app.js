@@ -30,4 +30,23 @@ $(document).ready(function(){
         $("#valorBusca").attr("max", 5000);
         $("#valorBusca").val(2500);
     });
+
+    //Deixado para uso futuro
+
+    // window.addEventListener("load", function(event) {
+    //     $( "#stepper" ).on('load', function(){
+    //         console.log("Carregou1111111111111");
+    //     });
+    // });
+    // $ (window) .on ('load', function () {
+    //     console.log("Carregou1111111111111");
+    //     $( ".bs-stepper" ).on ('load', function(){
+    //         console.log("Carregou22222222222222");
+    //         var stepper = new Stepper(document.querySelector('#stepper'));
+    //     });
+
+    //     $(window).on('.bs-stepper', 'ready' ,function() {
+    //         console.log("Carregou3333333333");
+    //     });
+    // });
 });

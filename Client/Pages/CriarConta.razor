@@ -1,0 +1,46 @@
+@page "/CriarConta"
+<div class="conteiner text-center">
+    <div class="col-md-12 mt-5">
+        <h2>Linear vertical stepper without fade</h2>
+        <div id="stepper" class="bs-stepper vertical">
+            <div class="bs-stepper-header">
+                <div class="step" data-target="#test-vlnf-1">
+                    <button type="button" class="btn step-trigger">
+                        <span class="bs-stepper-circle">1</span>
+                        <span class="bs-stepper-label">First step</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-vlnf-2">
+                    <button type="button" class="btn step-trigger">
+                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-label">Second step</span>
+                    </button>
+                </div>
+                <div class="line"></div>
+                <div class="step" data-target="#test-vlnf-3">
+                    <button type="button" class="btn step-trigger">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label">Third step</span>
+                    </button>
+                </div>
+            </div>
+            <div class="bs-stepper-content">
+                <div id="test-vlnf-1" class="content">
+                    <p class="text-center">test 1</p>
+                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                </div>
+                <div id="test-vlnf-2" class="content">
+                    <p class="text-center">test 2</p>
+                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                    <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+                </div>
+                <div id="test-vlnf-3" class="content">
+                    <p class="text-center">test 3</p>
+                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                    <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
