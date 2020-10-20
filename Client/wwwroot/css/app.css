@@ -231,12 +231,12 @@ app {
 }
 
 .btnAzul {
-    background-color: #1b6dc1;
-    color: #fff;
+    background-color: #1b6dc1 !important;
+    color: #fff !important;
 }
 .btnAmarelo {
-    background-color: #dea900;
-    color: #fff;
+    background-color: #dea900 !important;
+    color: #fff !important;
 }
 
 .map-container{

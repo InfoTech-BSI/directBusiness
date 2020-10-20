@@ -1,46 +1,158 @@
 @page "/CriarConta"
-<div class="conteiner text-center">
-    <div class="col-md-12 mt-5">
-        <h2>Linear vertical stepper without fade</h2>
-        <div id="stepper" class="bs-stepper vertical">
-            <div class="bs-stepper-header">
-                <div class="step" data-target="#test-vlnf-1">
-                    <button type="button" class="btn step-trigger">
-                        <span class="bs-stepper-circle">1</span>
-                        <span class="bs-stepper-label">First step</span>
-                    </button>
+<div class="container text-center">
+    <div class="col-md-12">
+        <h2>Cadastre-se agora mesmo</h2>
+        <form class="text-left">
+            <h4>Informações Pessoais</h4>
+            <div class="row">
+                <div class="form-group col-md-8 col-12">
+                    <label for="Nome">Nome Completo</label>
+                    <input type="text" class="form-control" id="Nome" name="Nome" required>
                 </div>
-                <div class="line"></div>
-                <div class="step" data-target="#test-vlnf-2">
-                    <button type="button" class="btn step-trigger">
-                        <span class="bs-stepper-circle">2</span>
-                        <span class="bs-stepper-label">Second step</span>
-                    </button>
-                </div>
-                <div class="line"></div>
-                <div class="step" data-target="#test-vlnf-3">
-                    <button type="button" class="btn step-trigger">
-                    <span class="bs-stepper-circle">3</span>
-                    <span class="bs-stepper-label">Third step</span>
-                    </button>
+                <div class="form-group col-md-4 col-12">
+                    <label for="Apelido">Apelido</label>
+                    <input type="text" class="form-control" id="Apelido" name="Apelido">
                 </div>
             </div>
-            <div class="bs-stepper-content">
-                <div id="test-vlnf-1" class="content">
-                    <p class="text-center">test 1</p>
-                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="CPF">CPF</label>
+                    <input type="text" class="form-control input-cpf" id="CPF" name="CPF">
                 </div>
-                <div id="test-vlnf-2" class="content">
-                    <p class="text-center">test 2</p>
-                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                    <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
-                </div>
-                <div id="test-vlnf-3" class="content">
-                    <p class="text-center">test 3</p>
-                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                    <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+                <div class="form-group col-md-6 col-12">
+                    <label for="RG">RG</label>
+                    <input type="text" class="form-control" id="RG" name="RG">
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="DataNasc">Data Nascimento</label>
+                    <input type="date" class="form-control" id="DataNasc" name="DataNasc">
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="estadoCivil">Estado civil</label>
+                    <select class="form-control" id="estadoCivil" name="estadoCivil">
+                        <option> Selecione </option>
+                        <option> Solteiro </option>
+                        <option> Relaciomento Sério </option>
+                        <option> Casado </option>
+                        <option> Separado </option>
+                        <option> Divorciado </option>
+                        <option> Viúvo </option>
+                    </select>
+                </div>
+            </div>
+            <h4>Endereço</h4>
+            <div class="row">
+                <div class="form-group col-md-4 col-12">
+                    <label for="CEP">CEP</label>
+                    <input type="text" class="form-control" id="CEP" name="CEP">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="Endereco"> Endereço (Logradouro), exemplo: Rua, Avenida, etc</label>
+                    <input type="text" class="form-control" id="Endereco" name="Endereco">
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="Numero"> Número </label>
+                    <input type="number" class="form-control" id="Numero" name="Numero">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="Bairro">Bairro</label>
+                    <input type="text" class="form-control" id="Bairro" name="Bairro">
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="Cidade">Cidade</label>
+                    <input type="text" class="form-control" id="Cidade" name="Cidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="Complemento">Complemento</label>
+                    <input type="text" class="form-control" id="Complemento" name="Complemento">
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="UF">UF (Estado)</label>
+                    <select class="form-control" id="UF" name="UF">
+                        <option value="AC"> Acre </option>
+                            <option value="AL"> Alagoas </option>
+                            <option value="AP"> Amapá </option>
+                            <option value="AM"> Amazonas </option>
+                            <option value="BA"> Bahia </option>
+                            <option value="CE"> Ceará </option>
+                            <option value="ES"> Espírito Santo </option>
+                            <option value="DF"> Distrito Federal </option>
+                            <option value="GO"> Goiás </option>
+                            <option value="MA"> Maranhão </option>
+                            <option value="MT"> Mato Grosso </option>
+                            <option value="MS"> Mato Grosso do Sul </option>
+                            <option value="MG"> Minas Gerais </option>
+                            <option value="PA"> Pará </option>
+                            <option value="PB"> Paraíba </option>
+                            <option value="PR"> Paraná </option>
+                            <option value="PE"> Pernambuco </option>
+                            <option value="PI"> Piauí </option>
+                            <option value="RJ"> Rio de Janeiro </option>
+                            <option value="RN"> Rio Grande do Norte </option>
+                            <option value="RS"> Rio Grande do Sul </option>
+                            <option value="RO"> Rondônia </option>
+                            <option value="RR"> Roraima </option>
+                            <option value="SC"> Santa Catarina </option>
+                            <option value="SP"> São Paulo </option>
+                            <option value="SE"> Sergipe </option>
+                            <option value="TO"> Tocantins </option>
+                    </select>
+                </div>
+            </div>
+            <h4>Dados de acesso</h4>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="Senha">Senha</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control senha" min="5" id="Senha" placeholder="Senha">
+                        <div class="input-group-prepend verSenha">
+                            <div class="input-group-text">
+                                <span class="senha">Ver senha</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="Senha">Confirmar senha</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control senha" min="5" id="SenhaConfimar" placeholder="Senha">
+                        <div class="input-group-prepend verSenha">
+                            <div class="input-group-text">
+                                <span class="senha">Ver senha</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="CheckTermos">
+                <label class="form-check-label" for="CheckTermos">
+                    Concordo com os <a>Termos de uso</a>
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="CheckMarketing">
+                <label class="form-check-label" for="CheckMarketing">
+                    Aceito o <a>uso dos meus dados para marketing personalizado</a>
+                </label>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
+                <button type="submit" class="btn btn-success">Fazer o cadastro</button>
+            </div>
+        </form>
+        <br>
     </div>
 </div>
