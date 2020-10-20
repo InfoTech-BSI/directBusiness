@@ -20,8 +20,77 @@
                     <input type="text" class="form-control input-cpf" id="CPF" name="CPF">
                 </div>
                 <div class="form-group col-md-6 col-12">
+                    <label for="UF-RG">UF de emissão do RG</label>
+                    <select class="form-control" id="UF-RG" name="UF-RG">
+                        <option value="00"> Selecione </option>
+                        <option value="AC"> Acre </option>
+                        <option value="AL"> Alagoas </option>
+                        <option value="AP"> Amapá </option>
+                        <option value="AM"> Amazonas </option>
+                        <option value="BA"> Bahia </option>
+                        <option value="CE"> Ceará </option>
+                        <option value="ES"> Espírito Santo </option>
+                        <option value="DF"> Distrito Federal </option>
+                        <option value="GO"> Goiás </option>
+                        <option value="MA"> Maranhão </option>
+                        <option value="MT"> Mato Grosso </option>
+                        <option value="MS"> Mato Grosso do Sul </option>
+                        <option value="MG"> Minas Gerais </option>
+                        <option value="PA"> Pará </option>
+                        <option value="PB"> Paraíba </option>
+                        <option value="PR"> Paraná </option>
+                        <option value="PE"> Pernambuco </option>
+                        <option value="PI"> Piauí </option>
+                        <option value="RJ"> Rio de Janeiro </option>
+                        <option value="RN"> Rio Grande do Norte </option>
+                        <option value="RS"> Rio Grande do Sul </option>
+                        <option value="RO"> Rondônia </option>
+                        <option value="RR"> Roraima </option>
+                        <option value="SC"> Santa Catarina </option>
+                        <option value="SP"> São Paulo </option>
+                        <option value="SE"> Sergipe </option>
+                        <option value="TO"> Tocantins </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="RG-OE">Órgão expedidor do RG</label>
+                    <select class="form-control" id="RG-OE" name="RG-OE">
+                        <option value="10"> SSP </option>
+                        <option value="40"> Organismos Militares </option>
+                        <option value="41"> Comando da Aeronáutica </option>
+                        <option value="42"> Comando do Exército </option>
+                        <option value="43"> Comando da Marinha </option>
+                        <option value="44"> Polícia Federal </option>
+                        <option value="60"> Carteirade Identidade Classista </option>
+                        <option value="61"> Conselho Regional de Administração </option>
+                        <option value="62"> Conselho Regional de Assist. Social </option>
+                        <option value="63"> Conselho Regional de Biblioteconomia </option>
+                        <option value="64"> Conselho Regional de Contabilidade </option>
+                        <option value="65"> Conselho Regional de Corretores Imóveis </option>
+                        <option value="66"> Conselho Regional de Enfermagem </option>
+                        <option value="67"> Conselho Regional de Engenharia, Arquitetura e Agronomia </option>
+                        <option value="68"> Conselho Regional de Estatística </option>
+                        <option value="69"> Conselho Regional de Farmácia </option>
+                        <option value="70"> Conselho Regional de Fisioterapia e Terapia Ocupacional </option>
+                        <option value="71"> Conselho Regional de Medicina </option>
+                        <option value="72"> Conselho Regional de Medicina Veterinária </option>
+                        <option value="73"> Ordem dos Músicos do Brasil </option>
+                        <option value="74"> Conselho Regional de Nutrição </option>
+                        <option value="75"> Conselho Regional de Odontologia </option>
+                        <option value="76"> Conselho Regional de Profissionais de Relações Públicas </option>
+                        <option value="77"> Conselho Regional de Psicologia </option>
+                        <option value="78"> Conselho Regional de Química </option>
+                        <option value="79"> Conselho Regional de Representantes Comerciais </option>
+                        <option value="80"> Ordem dos Advogados do Brasil </option>
+                        <option value="81"> Outros Emissores </option>
+                        <option value="82"> Documento Estrangeiro </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6 col-12">
                     <label for="RG">RG</label>
-                    <input type="text" class="form-control" id="RG" name="RG">
+                    <input type="text" class="form-control input-rg" id="RG" name="RG">
                 </div>
             </div>
             <div class="row">
@@ -46,12 +115,12 @@
             <div class="row">
                 <div class="form-group col-md-4 col-12">
                     <label for="CEP">CEP</label>
-                    <input type="text" class="form-control" id="CEP" name="CEP">
+                    <input type="text" class="form-control input-cep" id="CEP" name="CEP">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
-                    <label for="Endereco"> Endereço (Logradouro), exemplo: Rua, Avenida, etc</label>
+                    <label for="Endereco"> Logradouro </label>
                     <input type="text" class="form-control" id="Endereco" name="Endereco">
                 </div>
                 <div class="form-group col-md-6 col-12">
@@ -105,6 +174,17 @@
                             <option value="SE"> Sergipe </option>
                             <option value="TO"> Tocantins </option>
                     </select>
+                </div>
+            </div>
+            <h4>Dados de adicionais</h4>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="Renda">Renda</label>
+                    <input type="text" class="form-control input-valor" id="Renda" name="Renda">
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="Celular">Celular</label>
+                    <input type="text" class="form-control input-celular" id="Celular" name="Celular">
                 </div>
             </div>
             <h4>Dados de acesso</h4>
