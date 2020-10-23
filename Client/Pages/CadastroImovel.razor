@@ -6,8 +6,9 @@
 <h3 class="ml-5 text-center"> Cadastro de imóvel </h3>
 
 <div class="container text-center">
-    <EditForm Model="imovel" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset" class="form-row justify-content-center">
-        <DataAnnotationsValidator/> 
+    <form class="form-row justify-content-center">
+    @* <EditForm Model="imovel" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset" class="form-row justify-content-center"> *@
+        @* <DataAnnotationsValidator/>  *@
         <div class="form-group col-md-4">
             <select class="form-control">
             @* @bind-Value="teste" *@
@@ -120,7 +121,7 @@
 
         <br>
     @* </EditForm> *@
-    </EditForm>
+    </form>
 </div>
 
 @code {
