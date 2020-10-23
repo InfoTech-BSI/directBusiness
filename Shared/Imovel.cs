@@ -1,11 +1,17 @@
 using System.ComponentModel.DataAnnotations;
-using Shared;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DirectBusiness.Shared
 {
     public class Imovel
     {
+        [Key]
         public int IdImovel { get; set; }
+        public int IdTipoImovel { get; set; }
+        public TipoImovel TipoImovel { get; set; }
+        public int IdPessoa { get; set; }
+        public Pessoa Pessoa { get; set; }
+
         [Required(ErrorMessage = "Matrícula é obrigatório")] 
         public int Matricula { get; set; }
         [Required(ErrorMessage = "Descrição é obrigatório")] 
@@ -27,11 +33,5 @@ namespace DirectBusiness.Shared
         public double Valor { get; set; }
         [Required(ErrorMessage = "Status é obrigatório")] 
         public string Status { get; set; }
-
-        public int IdTipoImovel { get; set; }
-        public TipoImovel TipoImovel { get; set; }
-
-        public int IdPessoa { get; set; }
-        public Pessoa Pessoa { get; set; }
     }
 }

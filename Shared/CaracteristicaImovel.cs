@@ -1,11 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Shared
+namespace DirectBusiness.Shared
 {
     public class CaracteristicaImovel
     {
+        [Key]
         public int IdCarac { get; set; }
         public int IdImovel { get; set; }
+        public Imovel Imovel { get; set; }
         [Required(ErrorMessage = "Quantidade de quartos é obrigatório")] 
         public int QtdeQuartos { get; set; }
         [Required(ErrorMessage = "Quantidade de Banheiros é obrigatório")] 
@@ -18,7 +21,7 @@ namespace Shared
         public bool Pets { get; set; }
         [Required(ErrorMessage = "Mobiliado é obrigatório")] 
         public bool Mobiliado { get; set; }
-        [Required(ErrorMessage = "Apartamento é obrigatório")] 
-        public bool Apartamento { get; set; }
+        // [Required(ErrorMessage = "Apartamento é obrigatório")] 
+        // public bool Apartamento { get; set; }
     }
 }

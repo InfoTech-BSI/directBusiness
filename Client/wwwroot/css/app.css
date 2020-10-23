@@ -221,3 +221,33 @@ app {
 .btn-icon {
 	padding: 8px;
 }
+
+.navAzul {
+    background-color: #1b6dc1;
+}
+.titulo {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btnAzul {
+    background-color: #1b6dc1 !important;
+    color: #fff !important;
+}
+.btnAmarelo {
+    background-color: #dea900 !important;
+    color: #fff !important;
+}
+
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-container iframe{
+    left:0;
+    top:0;
+    height:60%;
+    width:100%;
+    position:absolute;
+}

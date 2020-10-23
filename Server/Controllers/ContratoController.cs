@@ -7,48 +7,44 @@ using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("[controller]")]
-public class ImovelController : Controller{
+public class ControllerController : Controller{
     private readonly AppDbContext banco;
 
-    public ImovelController(AppDbContext db){
+    public ControllerController(AppDbContext db){
         this.banco = db;
     }
 
     [HttpGet]
     [Route("List")]
     public async Task<IActionResult> Get(){
-        var imoveis = await banco.Imovel.ToListAsync();
+        var imoveis = await banco.Contrato.ToListAsync();
         return Ok(imoveis);
     }
 
     [HttpGet]
     [Route("List/{id}")]
     public async Task<IActionResult> GetById([FromRoute] int id){
-        var imoveis = await banco.Imovel.FindAsync(id);
+        var imoveis = await banco.Contrato.FindAsync(id);
         return Ok(imoveis);
     }
 
     [HttpPost]
     [Route("Create")]
-    public async Task<ActionResult> Post([FromBody] Imovel imovel){
+    public async Task<ActionResult> Post([FromBody] Contrato contrato){
         try
         {
-            var novoImovel = new Imovel{
-                IdTipoImovel = imovel.IdTipoImovel,
-                IdPessoa = imovel.IdPessoa,
-                Matricula = imovel.Matricula,
-                Descricao = imovel.Descricao,
-                Logradouro = imovel.Logradouro,
-                Bairro = imovel.Bairro,
-                Numero = imovel.Numero,
-                Cidade = imovel.Cidade,
-                Complemento = imovel.Complemento,
-                UF = imovel.UF,
-                Valor = imovel.Valor,
-                Status = imovel.Status
+            var novoContrato = new Contrato{
+                IdTipoContrato = contrato.IdTipoContrato,
+                IdImovel = contrato.IdImovel,
+                IdProprietario = contrato.IdProprietario,
+                IdInteressado = contrato.IdInteressado,
+                DataInicio = contrato.DataInicio,
+                DataFim = contrato.DataFim,
+                ValorNegociado = contrato.ValorNegociado,
+                Texto = contrato.Texto
             };
 
-            banco.Add(novoImovel);
+            banco.Add(novoContrato);
             await banco.SaveChangesAsync();
             return Ok();
         }
@@ -60,16 +56,16 @@ public class ImovelController : Controller{
 
     [HttpPut]
     [Route("Edit")]
-    public async Task<ActionResult> Put([FromBody] Imovel imovel){
+    public async Task<ActionResult> Put([FromBody] Contrato contrato){
         try
         {
-            var id = imovel.IdImovel;
-            var imov = await banco.Imovel.FindAsync(id);
-            if(imov == null){
+            var id = contrato.IdContrato;
+            var con = await banco.Contrato.FindAsync(id);
+            if(con == null){
                 return NotFound();
             }
 
-            banco.Entry(imovel).State = EntityState.Modified;
+            banco.Entry(contrato).State = EntityState.Modified;
 
             await banco.SaveChangesAsync();
             return Ok();
@@ -84,12 +80,12 @@ public class ImovelController : Controller{
     [HttpDelete]
     [Route("Delete/{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id){
-        var imovel = await banco.Imovel.FindAsync(id);
-        if(imovel == null){
+        var contrato = await banco.Contrato.FindAsync(id);
+        if(contrato == null){
             return NotFound();
         }
 
-        banco.Imovel.Remove(imovel);
+        banco.Contrato.Remove(contrato);
         await banco.SaveChangesAsync();
         return Ok();
     }
