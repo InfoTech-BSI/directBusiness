@@ -4,8 +4,13 @@ using System.ComponentModel.DataAnnotations;
 namespace Shared
 {
 
+
+
+
     public class Contrato
-    {   
+    {
+
+      
         public int IdContrato { get; set; }
 
         public int IdTipoContrato { get; set; }
