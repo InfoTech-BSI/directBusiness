@@ -3,9 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DirectBusiness.Shared
 {
+
     public class Contrato
     {   
         [Key]
+
         public int IdContrato { get; set; }
 
         public int IdTipoContrato { get; set; }

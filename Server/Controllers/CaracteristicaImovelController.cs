@@ -41,7 +41,7 @@ public class CaracteristicaImovelController : Controller{
                 Metragem = caracteristicas.Metragem,
                 Pets = caracteristicas.Pets,
                 Mobiliado = caracteristicas.Mobiliado,
-                Apartamento = caracteristicas.Apartamento
+                //Apartamento = caracteristicas.Apartamento
             };
 
             banco.Add(novaCaracteristicaImovel);

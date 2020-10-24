@@ -21,7 +21,7 @@ namespace DirectBusiness.Shared
         public bool Pets { get; set; }
         [Required(ErrorMessage = "Mobiliado é obrigatório")] 
         public bool Mobiliado { get; set; }
-        [Required(ErrorMessage = "Apartamento é obrigatório")] 
-        public bool Apartamento { get; set; }
+        // [Required(ErrorMessage = "Apartamento é obrigatório")] 
+        // public bool Apartamento { get; set; }
     }
 }

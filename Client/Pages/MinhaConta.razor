@@ -1,0 +1,52 @@
+@page "/Pessoa/MinhaConta"
+@using System.Net.Http
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<div class="container text-center">
+    <img src="img/eu.jpeg" class="rounded-circle" width="300" height="300" />
+</div>
+
+<div class="card m-3 text-center">
+    <h4 class="card-header">Meu Perfil</h4>
+    @* <EditForm Model="@pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
+        <DataAnnotationsValidator/> *@
+    <div class="card-body">
+    <form class="form-row justify-content">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+
+                <input type="text" class="form-control" id="Nome" placeholder="Nome">
+
+            </div>
+        </div>
+        
+    </form>
+    </div>
+    @* </EditForm> *@
+</div>
+
+@code {
+    private Pessoa pessoa = new Pessoa();
+    private EditContext editContext { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        pessoa = await Http.GetFromJsonAsync<Pessoa>($"/Pessoa");
+        editContext = new EditContext(pessoa);
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await Http.PutAsJsonAsync("/Pessoa/Update", pessoa);
+        //NavigationManager.NavigateTo("produto/list");
+    }
+
+    private void HandleReset()
+    {
+        pessoa = new Pessoa();
+        editContext = new EditContext(pessoa);
+    }
+}
