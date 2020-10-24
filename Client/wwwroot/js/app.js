@@ -1,15 +1,24 @@
 $(document).ready(function () {
     $(document).on('input', '#valorBusca', function () {
-        $('#valorExibido').html("Busca a partir 100 reais até " + $(this).val() + " reais.");
+        if ($("#Comprar").hasClass("active")) {
+            $('#valorExibido').html("Busca a partir 5000 reais até " + $(this).val() + " reais.");
+        }
+        if ($("#Alugar").hasClass("active")) {
+            $('#valorExibido').html("Busca a partir 100 reais até " + $(this).val() + " reais.");
+        }
     });
 
     $(document).on('click', '#Comprar', function () {
-        $("#Comprar").toggleClass("active");
-        $("#Comprar").toggleClass("disabled");
-        $("#Alugar").toggleClass("active");
-        $("#Alugar").toggleClass("disabled");
+        if (!$("#Comprar").hasClass("active")) {
+            $("#Comprar").addClass("active");
+            $("#Comprar").removeClass("disabled");
+        }
+        if ($("#Alugar").hasClass("active")) {
+            $("#Alugar").removeClass("active");
+            $("#Alugar").addClass("disabled");
+        }
         $('#valorMinimo').html("5.000 reais");
-        $('#valorExibido').html("Busca a partir 5.000 reais até 300000 reais.");
+        $('#valorExibido').html("Busca a partir 5000 reais até 2000000 reais.");
         $('#valorMaximo').html("2.000.000 reais");
         $("#valorBusca").attr("step", 10000);
         $("#valorBusca").attr("min", 5000);
@@ -18,10 +27,14 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#Alugar', function () {
-        $("#Comprar").toggleClass("active");
-        $("#Comprar").toggleClass("disabled");
-        $("#Alugar").toggleClass("active");
-        $("#Alugar").toggleClass("disabled");
+        if (!$("#Alugar").hasClass("active")) {
+            $("#Alugar").addClass("active");
+            $("#Alugar").removeClass("disabled");
+        }
+        if ($("#Comprar").hasClass("active")) {
+            $("#Comprar").removeClass("active");
+            $("#Comprar").addClass("disabled");
+        }
         $('#valorMinimo').html("500 reais");
         $('#valorExibido').html("Busca a partir 500 reais até 2500 reais.");
         $('#valorMaximo').html("15.000 reais");
@@ -34,7 +47,11 @@ $(document).ready(function () {
     $(document).on('change', "#valorBusca", function () {
         if ($("#valorBusca").val() == 14900) {
             $("#valorBusca").val(15000);
-            $("#valorExibido").html("Busca a partir 100 reais até " + 15000 + " reais.");
+            $("#valorExibido").html("Busca a partir 100 reais até 15000 reais.");
+        }
+        if ($("#valorBusca").val() == 1995000) {
+            $("#valorBusca").val(2000000);
+            $("#valorExibido").html("Busca a partir 5000 reais até 2000000 reais.");
         }
     });
 
@@ -109,19 +126,22 @@ function buscaCEP() {
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     <span class="sr-only">Carreando...</span>
     `);
+    
+    $(".icone-cep").addClass("disabled");
 
     $.get("https://viacep.com.br/ws/" + cep + "/json/", function (data) {
         console.log(data);
-        $('#Endereco').val(data.logradouro);
-        $('#Bairro').val(data.bairro);
-        $('#Cidade').val(data.localidade);
-        $('#Complemento').val(data.complemento);
+        $('#endereco').val(data.logradouro);
+        $('#bairro').val(data.bairro);
+        $('#cidade').val(data.localidade);
+        $('#complemento').val(data.complemento);
         $('#UF').val(data.uf);
     })
         .fail(function () {
             alert("Erro ao procurar cep");
         }).always(function () {
-            $('.icone-cep').html(`<i class="fas fa-search"></i>`);
+            $('.icone-cep').html(`Buscar CEP <i class="fas fa-search"></i>`);
+            $(".icone-cep").removeClass("disabled");
         });
 };
 $(document).on('keyup', ".input-cep", function () {
@@ -131,7 +151,7 @@ $(document).on('keyup', ".input-cep", function () {
         blocks: [5, 3],
         numericOnly: true
     });
-    if( $(this).val().length == 9) buscaCEP();
+    if ($(this).val().length == 9) buscaCEP();
 });
 $(document).on('focusout', ".input-cep", function () {
     console.log("Ativou máscara CEP");

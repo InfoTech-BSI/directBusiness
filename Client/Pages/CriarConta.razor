@@ -3,15 +3,16 @@
     <div class="col-md-12">
         <h2>Cadastre-se agora mesmo</h2>
         <form class="text-left">
+            <hr/>
             <h4>Informações Pessoais</h4>
             <div class="row">
                 <div class="form-group col-md-8 col-12">
-                    <label for="Nome">Nome Completo</label>
-                    <input type="text" class="form-control" id="Nome" name="Nome" required>
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
                 </div>
                 <div class="form-group col-md-4 col-12">
-                    <label for="Apelido">Apelido</label>
-                    <input type="text" class="form-control" id="Apelido" name="Apelido">
+                    <label for="apelido">Apelido</label>
+                    <input type="text" class="form-control" id="apelido" name="apelido">
                 </div>
             </div>
             <div class="row">
@@ -57,7 +58,8 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="RG-OE">Órgão expedidor do RG</label>
                     <select class="form-control" id="RG-OE" name="RG-OE">
-                        <option value="10"> SSP </option>
+                        <option value="00"> Selecione </option>
+                        <option value="10"> SSP - Secretaria da Segurança Pública </option>
                         <option value="40"> Organismos Militares </option>
                         <option value="41"> Comando da Aeronáutica </option>
                         <option value="42"> Comando do Exército </option>
@@ -111,44 +113,43 @@
                     </select>
                 </div>
             </div>
+            <hr/>
             <h4>Endereço</h4>
-            <div class="row">
+            <div class="row align-items-end">
                 <div class="form-group col-md-4 col-12">
-                    <label for="CEP">CEP</label>
-                    <div class="input-group mb-2 mr-sm-2">
-                        <input type="text" class="form-control input-cep" id="CEP" name="CEP">
-                        <div class="input-group-prepend" onclick="buscaCEP()">
-                            <div class="input-group-text icone-cep">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
+                    <label for="cep">CEP</label>
+                    <input type="text" class="form-control input-cep" id="cep" name="cep" placeholder="CEP">
+                </div>
+                <div class="form-group col-md-4" onclick="buscaCEP()">
+                    <a class="btn btn-primary text-center icone-cep">
+                        Buscar CEP <i class="fa fa-search"></i>
+                    </a>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
-                    <label for="Endereco"> Logradouro </label>
-                    <input type="text" class="form-control" id="Endereco" name="Endereco">
+                    <label for="endereco"> Logradouro </label>
+                    <input type="text" class="form-control" id="endereco" name="endereco">
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="Numero"> Número </label>
-                    <input type="number" class="form-control" id="Numero" name="Numero">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6 col-12">
-                    <label for="Bairro">Bairro</label>
-                    <input type="text" class="form-control" id="Bairro" name="Bairro">
-                </div>
-                <div class="form-group col-md-6 col-12">
-                    <label for="Cidade">Cidade</label>
-                    <input type="text" class="form-control" id="Cidade" name="Cidade">
+                    <label for="bumero"> Número </label>
+                    <input type="number" class="form-control" id="numero" name="numero">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
-                    <label for="Complemento">Complemento</label>
-                    <input type="text" class="form-control" id="Complemento" name="Complemento">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" name="bairro">
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" class="form-control" id="cidade" name="cidade">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id="complemento" name="complemento">
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="UF">UF (Estado)</label>
@@ -184,6 +185,7 @@
                     </select>
                 </div>
             </div>
+            <hr/>
             <h4>Dados de adicionais</h4>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
@@ -191,36 +193,37 @@
                     <input type="text" value="1.000,00" class="form-control input-valor" id="Renda" name="Renda">
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="Celular">Celular</label>
-                    <input type="text" class="form-control input-celular" id="Celular" name="Celular">
+                    <label for="celular">Celular</label>
+                    <input type="text" class="form-control input-celular" id="celular" name="celular">
                 </div>
             </div>
+            <hr/>
             <h4>Dados de acesso</h4>
             <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="email" class="form-control" id="Email">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
             </div>
             <div class="row">
-                <div class="form-group col-md-6 col-12">
-                    <label for="Senha">Senha</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control senha" min="5" id="Senha" placeholder="Senha">
-                        <div class="input-group-prepend verSenha">
-                            <div class="input-group-text">
-                                <span class="senha">Ver senha</span>
-                            </div>
-                        </div>
+                <div class="row form-group col-md-6 col-12 p-0 m-0 align-items-end">
+                    <div class="form-group col-md-7 col-12">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control senha" min="5" id="senha" name="senha" placeholder="Senha">
+                    </div>
+                    <div class="form-group col-md-5 col-12">
+                        <a class="btn btn-primary verSenha">
+                            <span class="senha">Ver senha</span>
+                        </a>
                     </div>
                 </div>
-                <div class="form-group col-md-6 col-12">
-                    <label for="Senha">Confirmar senha</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control senha" min="5" id="SenhaConfimar" placeholder="Senha">
-                        <div class="input-group-prepend verSenha">
-                            <div class="input-group-text">
-                                <span class="senha">Ver senha</span>
-                            </div>
-                        </div>
+                <div class="row form-group col-md-6 col-12 p-0 m-0 align-items-end">
+                    <div class="form-group col-md-7 col-12">
+                        <label for="senhaConfimar">Confirmar senha</label>
+                        <input type="password" class="form-control senha" min="5" id="senhaConfimar" name="senhaConfimar" placeholder="Confirmar senha">
+                    </div>
+                    <div class="form-group col-md-5 col-12">
+                        <a class="btn btn-primary verSenha">
+                            <span class="senha">Ver senha</span>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -1,15 +1,15 @@
 {
-  "name": "DirectBusiness",
-  "short_name": "DirectBusiness",
+  "name": "Direct Business",
+  "short_name": "Direct Business",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#03173d",
+  "theme_color": "#1b6dc1",
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "img/logoDB.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "149x149"
     }
   ]
 }
