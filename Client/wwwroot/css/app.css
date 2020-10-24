@@ -252,3 +252,8 @@ app {
     width:100%;
     position:absolute;
 }
+
+.carregando{
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+}

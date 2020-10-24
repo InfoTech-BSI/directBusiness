@@ -115,7 +115,14 @@
             <div class="row">
                 <div class="form-group col-md-4 col-12">
                     <label for="CEP">CEP</label>
-                    <input type="text" class="form-control input-cep" id="CEP" name="CEP">
+                    <div class="input-group mb-2 mr-sm-2">
+                        <input type="text" class="form-control input-cep" id="CEP" name="CEP">
+                        <div class="input-group-prepend" onclick="buscaCEP()">
+                            <div class="input-group-text icone-cep">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -146,33 +153,34 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="UF">UF (Estado)</label>
                     <select class="form-control" id="UF" name="UF">
+                        <option value="00"> Selecione </option>
                         <option value="AC"> Acre </option>
-                            <option value="AL"> Alagoas </option>
-                            <option value="AP"> Amapá </option>
-                            <option value="AM"> Amazonas </option>
-                            <option value="BA"> Bahia </option>
-                            <option value="CE"> Ceará </option>
-                            <option value="ES"> Espírito Santo </option>
-                            <option value="DF"> Distrito Federal </option>
-                            <option value="GO"> Goiás </option>
-                            <option value="MA"> Maranhão </option>
-                            <option value="MT"> Mato Grosso </option>
-                            <option value="MS"> Mato Grosso do Sul </option>
-                            <option value="MG"> Minas Gerais </option>
-                            <option value="PA"> Pará </option>
-                            <option value="PB"> Paraíba </option>
-                            <option value="PR"> Paraná </option>
-                            <option value="PE"> Pernambuco </option>
-                            <option value="PI"> Piauí </option>
-                            <option value="RJ"> Rio de Janeiro </option>
-                            <option value="RN"> Rio Grande do Norte </option>
-                            <option value="RS"> Rio Grande do Sul </option>
-                            <option value="RO"> Rondônia </option>
-                            <option value="RR"> Roraima </option>
-                            <option value="SC"> Santa Catarina </option>
-                            <option value="SP"> São Paulo </option>
-                            <option value="SE"> Sergipe </option>
-                            <option value="TO"> Tocantins </option>
+                        <option value="AL"> Alagoas </option>
+                        <option value="AP"> Amapá </option>
+                        <option value="AM"> Amazonas </option>
+                        <option value="BA"> Bahia </option>
+                        <option value="CE"> Ceará </option>
+                        <option value="ES"> Espírito Santo </option>
+                        <option value="DF"> Distrito Federal </option>
+                        <option value="GO"> Goiás </option>
+                        <option value="MA"> Maranhão </option>
+                        <option value="MT"> Mato Grosso </option>
+                        <option value="MS"> Mato Grosso do Sul </option>
+                        <option value="MG"> Minas Gerais </option>
+                        <option value="PA"> Pará </option>
+                        <option value="PB"> Paraíba </option>
+                        <option value="PR"> Paraná </option>
+                        <option value="PE"> Pernambuco </option>
+                        <option value="PI"> Piauí </option>
+                        <option value="RJ"> Rio de Janeiro </option>
+                        <option value="RN"> Rio Grande do Norte </option>
+                        <option value="RS"> Rio Grande do Sul </option>
+                        <option value="RO"> Rondônia </option>
+                        <option value="RR"> Roraima </option>
+                        <option value="SC"> Santa Catarina </option>
+                        <option value="SP"> São Paulo </option>
+                        <option value="SE"> Sergipe </option>
+                        <option value="TO"> Tocantins </option>
                     </select>
                 </div>
             </div>
@@ -180,7 +188,7 @@
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <label for="Renda">Renda</label>
-                    <input type="text" class="form-control input-valor" id="Renda" name="Renda">
+                    <input type="text" value="1.000,00" class="form-control input-valor" id="Renda" name="Renda">
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="Celular">Celular</label>
