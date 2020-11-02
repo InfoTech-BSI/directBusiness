@@ -42,5 +42,7 @@ namespace DirectBusiness.Shared
 
         [Required(ErrorMessage = "Senha é obrigatório")]
         public string Senha { get; set; }
+
+        public Imovel Imovel { get; set; }
     }
 }

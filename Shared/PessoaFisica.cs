@@ -6,6 +6,7 @@ namespace DirectBusiness.Shared
     {
         [Key]
         public int Id {get; set;}
+        
         public int IdPessoa { get; set; }
         public Pessoa Pessoa { get; set; }
 
