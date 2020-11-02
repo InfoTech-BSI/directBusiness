@@ -37,8 +37,8 @@ namespace DirectBusiness.Shared
         [Required(ErrorMessage = "Status é obrigatório")] 
         public string Status { get; set; }
 
-        public Contrato Contrato { get; set; }
+        //public Contrato Contrato { get; set; }
         public List<Midia> Midias { get; set; }
-        public CaracteristicaImovel CaracteristicaImovel { get; set; }
+        //public CaracteristicaImovel CaracteristicaImovel { get; set; }
     }
 }
