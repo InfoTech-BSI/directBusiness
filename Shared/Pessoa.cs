@@ -15,8 +15,8 @@ namespace DirectBusiness.Shared
         [Required(ErrorMessage = "Renda é obrigatório")]
         public double Renda { get; set; }
 
-        [Required(ErrorMessage = "Celular é obrigatório")]
-        public string Celular { get; set; }
+        [Required(ErrorMessage = "Telefone é obrigatório")]
+        public string Telefone { get; set; }
 
         [Required(ErrorMessage = "CEP é obrigatório")]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "O CPF deve ter 15 caracteres.")]

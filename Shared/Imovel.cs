@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace DirectBusiness.Shared
 {
@@ -7,8 +8,10 @@ namespace DirectBusiness.Shared
     {
         [Key]
         public int IdImovel { get; set; }
+
         public int IdTipoImovel { get; set; }
         public TipoImovel TipoImovel { get; set; }
+        
         public int IdPessoa { get; set; }
         public Pessoa Pessoa { get; set; }
 
@@ -33,5 +36,9 @@ namespace DirectBusiness.Shared
         public double Valor { get; set; }
         [Required(ErrorMessage = "Status é obrigatório")] 
         public string Status { get; set; }
+
+        //public Contrato Contrato { get; set; }
+        public List<Midia> Midias { get; set; }
+        //public CaracteristicaImovel CaracteristicaImovel { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace DirectBusiness.Shared
 {
@@ -9,5 +10,7 @@ namespace DirectBusiness.Shared
 
         [Required(ErrorMessage = "Descrição é obrigatório")]
         public string Descricao { get; set; }
+
+        public List<Contrato> Contratos { get; set; }
     }
 }

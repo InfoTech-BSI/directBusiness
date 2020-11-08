@@ -7,8 +7,10 @@ namespace DirectBusiness.Shared
     {
         [Key]
         public int IdCarac { get; set; }
+
         public int IdImovel { get; set; }
         public Imovel Imovel { get; set; }
+        
         [Required(ErrorMessage = "Quantidade de quartos é obrigatório")] 
         public int QtdeQuartos { get; set; }
         [Required(ErrorMessage = "Quantidade de Banheiros é obrigatório")] 
