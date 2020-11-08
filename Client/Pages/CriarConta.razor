@@ -1,7 +1,7 @@
 @page "/CriarConta"
 @using System.Net.Http
-@using BlazorValidation.Data
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <div class="container text-center">
     <div class="col-md-12">
@@ -75,13 +75,13 @@
                 <div class="form-group col-md-6 col-12">
                     <Label> Logradouro </Label>
                     <InputText @bind-Value="pessoaFisica.Pessoa.Endereco" class="form-control" id="endereco"
-                        placeholder="Endereço" />
+                        placeholder="Endereço" name="Endereco" />
                     <ValidationMessage For="@(() => pessoaFisica.Pessoa.Endereco)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label> Número </Label>
                     <InputText @bind-Value="pessoaFisica.Pessoa.Numero" class="form-control" id="numero"
-                        placeholder="Número" />
+                        placeholder="Número" name="Numero" />
                     <ValidationMessage For="@(() => pessoaFisica.Pessoa.Numero)" />
                 </div>
             </div>
@@ -89,7 +89,7 @@
                 <div class="form-group col-md-6 col-12">
                     <Label>Bairro</Label>
                     <InputText @bind-Value="pessoaFisica.Pessoa.Bairro" class="form-control" id="bairro"
-                        placeholder="Bairro" />
+                        placeholder="Bairro" name="Bairro" />
                     <ValidationMessage For="@(() => pessoaFisica.Pessoa.Bairro)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
@@ -103,12 +103,12 @@
                 <div class="form-group col-md-6 col-12">
                     <Label>Complemento</Label>
                     <InputText @bind-Value="pessoaFisica.Pessoa.Complemento" class="form-control" id="complemento"
-                        placeholder="Complemento" />
+                        placeholder="Complemento" name="Complemento" />
                     <ValidationMessage For="@(() => pessoaFisica.Pessoa.Complemento)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label>UF (Estado)</Label>
-                    <InputSelect @bind-Value="pessoaFisica.Pessoa.Uf" class="form-control" id="UF">
+                    <InputSelect @bind-Value="pessoaFisica.Pessoa.Uf" name="Uf" class="form-control" id="UF">
                         <option value=""> Selecione </option>
                         <option value="AC"> Acre </option>
                         <option value="AL"> Alagoas </option>
@@ -222,7 +222,8 @@
         Console.WriteLine(pessoaFisica);
 
         //Enviar dados para o Controller no Backend
-        await Http.PostAsJsonAsync("/Register2/Create", pessoaFisica);
+        await Http.PostAsJsonAsync("/PessoaFisica/Create", pessoaFisica);
+        NavigationManager.NavigateTo("PessoaFisica/List");
     }
 
     private string StatusMessage;

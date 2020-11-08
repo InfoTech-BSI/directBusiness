@@ -17,10 +17,11 @@ namespace DirectBusiness.Server.Migrations
                     Renda = table.Column<double>(nullable: false),
                     Telefone = table.Column<int>(nullable: false),
                     Endereco = table.Column<string>(nullable: false),
+                    CEP = table.Column<string>(nullable: false),
                     Bairro = table.Column<string>(nullable: false),
-                    Numero = table.Column<int>(nullable: false),
+                    Numero = table.Column<string>(nullable: false),
                     Cidade = table.Column<string>(nullable: false),
-                    Complemento = table.Column<string>(nullable: false),
+                    Complemento = table.Column<string>(nullable: true),
                     Uf = table.Column<string>(maxLength: 2, nullable: false),
                     Login = table.Column<string>(nullable: false),
                     Senha = table.Column<string>(nullable: false)

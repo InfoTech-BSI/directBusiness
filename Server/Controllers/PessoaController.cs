@@ -37,6 +37,7 @@ public class PessoaController : Controller{
                 Email = pessoa.Email,
                 Renda = pessoa.Renda,
                 Telefone = pessoa.Telefone,
+                CEP = pessoa.CEP,
                 Endereco = pessoa.Endereco,
                 Bairro = pessoa.Bairro,
                 Numero = pessoa.Numero,
