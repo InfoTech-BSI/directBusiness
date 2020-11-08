@@ -122,27 +122,39 @@ function buscaCEP() {
 
     const cep = $('.input-cep').val();
 
-    $('.icone-cep').html(`
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-    <span class="sr-only">Carreando...</span>
-    `);
-    
-    $(".icone-cep").addClass("disabled");
+    if (!(cep == null || cep == '')) {
+        $('.icone-cep').html(`
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Carreando...</span>
+        `);
 
-    $.get("https://viacep.com.br/ws/" + cep + "/json/", function (data) {
-        console.log(data);
-        $('#endereco').val(data.logradouro);
-        $('#bairro').val(data.bairro);
-        $('#cidade').val(data.localidade);
-        $('#complemento').val(data.complemento);
-        $('#UF').val(data.uf);
-    })
-        .fail(function () {
-            alert("Erro ao procurar cep");
-        }).always(function () {
-            $('.icone-cep').html(`Buscar CEP <i class="fas fa-search"></i>`);
-            $(".icone-cep").removeClass("disabled");
-        });
+        $(".icone-cep").addClass("disabled");
+
+        $.get("https://viacep.com.br/ws/" + cep + "/json/", function (data) {
+            console.log(data);
+            $('#endereco').val(data.logradouro);
+            $('#bairro').val(data.bairro);
+            $('#cidade').val(data.localidade);
+            $('#complemento').val(data.complemento);
+            $('#UF').val(data.uf);
+        })
+            .fail(function () {
+                alert("Erro ao procurar cep");
+            }).always(function () {
+                $('.icone-cep').html(`Buscar CEP <i class="fas fa-search"></i>`);
+                $(".icone-cep").removeClass("disabled");
+                $("#endereco").addClass("modified");
+                $("#endereco").addClass("valid");
+                $("#bairro").addClass("modified");
+                $("#bairro").addClass("valid");
+                $("#cidade").addClass("modified");
+                $("#cidade").addClass("valid");
+                $("#complemento").addClass("modified");
+                $("#complemento").addClass("valid");
+                $("#UF").addClass("modified");
+                $("#UF").addClass("valid");
+            });
+    }
 };
 $(document).on('keyup', ".input-cep", function () {
     console.log("Ativou máscara CEP");
@@ -205,4 +217,27 @@ $(document).on('focusout', ".input-celular", function () {
         delimiters: ["(", ")", "-"]
     });
     $(document).off('focusout', '.input-celular');
+});
+
+// máscara data
+
+$(document).on('keyup', ".input-data", function () {
+    console.log("Ativou máscara Data");
+    const cleave = new Cleave('.input-data', {
+        numericOnly: true,
+        blocks: [2, 2, 4],
+        delimiters: ["/", "/", "/"],
+        numeralPositveOnly: true
+    });
+    $(document).off('keyup', '.input-data');
+});
+$(document).on('focusout', ".input-data", function () {
+    console.log("Ativou máscara Data");
+    const cleave = new Cleave('.input-data', {
+        numericOnly: true,
+        blocks: [2, 2, 4],
+        delimiters: ["/", "/", "/"],
+        numeralPositveOnly: true
+    });
+    $(document).off('focusout', '.input-data');
 });

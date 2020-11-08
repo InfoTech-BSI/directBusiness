@@ -15,8 +15,12 @@ namespace DirectBusiness.Shared
         [Required(ErrorMessage = "Renda é obrigatório")]
         public double Renda { get; set; }
 
-        [Required(ErrorMessage = "Telefone é obrigatório")]
-        public int Telefone { get; set; }
+        [Required(ErrorMessage = "Celular é obrigatório")]
+        public string Celular { get; set; }
+
+        [Required(ErrorMessage = "CEP é obrigatório")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "O CPF deve ter 15 caracteres.")]
+        public string CEP { get; set; }
 
         [Required(ErrorMessage = "Endereço é obrigatório")]
         public string Endereco { get; set; }
@@ -41,6 +45,14 @@ namespace DirectBusiness.Shared
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Senha é obrigatório")]
+        [DataType(DataType.Password)]
+        [StringLength(50, MinimumLength = 6)]
         public string Senha { get; set; }
+
+        [Required(ErrorMessage = "Confimar a senha é obrigatório")]
+        [DataType(DataType.Password)]
+        [StringLength(50, MinimumLength = 6)]
+        [CompareAttribute("Senha", ErrorMessage = "As duas senhas são diferentes")]
+        public string ConfirmarSenha { get; set; }
     }
 }
