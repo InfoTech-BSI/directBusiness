@@ -59,6 +59,22 @@ $(document).ready(function () {
         $("#loginModal").modal('hide');
     });
 
+
+    function verficaSeIniciou() {
+        const pai = document.getElementsByTagName("body")[0];
+        const filho = pai.querySelector(".content");
+
+        if (filho !== null) {
+            console.log("Página carregada");
+
+            $(".senha").attr("type", "password");
+        } else {
+            setTimeout(verficaSeIniciou, 100);
+        }
+    };
+
+    verficaSeIniciou();
+
     $(document).on('click', '.verSenha', function () {
         if ($(".verSenha .senha").first().text() == 'Ver senha') {
             $(".verSenha .senha").text('Esconder senha');
@@ -73,51 +89,29 @@ $(document).ready(function () {
 //Funções máscara
 //https://nosir.github.io/cleave.js/
 
-
 // máscara CPF
-
-$(document).on('keyup', ".input-cpf", function () {
+$(document).on('focusout keyup', ".input-cpf", function () {
     console.log("Ativou máscara CPF");
     const cleave = new Cleave('.input-cpf', {
         delimiters: ['.', '.', '-'],
         blocks: [3, 3, 3, 2],
         numericOnly: true
     });
-    $(document).off('keyup', '.input-cpf');
-});
-$(document).on('focusout', ".input-cpf", function () {
-    console.log("Ativou máscara CPF");
-    const cleave = new Cleave('.input-cpf', {
-        delimiters: ['.', '.', '-'],
-        blocks: [3, 3, 3, 2],
-        numericOnly: true
-    });
-    $(document).off('focusout', '.input-cpf');
+    $(document).off('focusout keyup', '.input-cpf');
 });
 
 // máscara RG
-
-$(document).on('keyup', ".input-rg", function () {
+$(document).on('focusout keyup', ".input-rg", function () {
     console.log("Ativou máscara RG");
     const cleave = new Cleave('.input-rg', {
         delimiters: ['.', '.', '-'],
         blocks: [2, 3, 3, 1],
         uppercase: true
     });
-    $(document).off('keyup', '.input-rg');
-});
-$(document).on('focusout', ".input-rg", function () {
-    console.log("Ativou máscara RG");
-    const cleave = new Cleave('.input-rg', {
-        delimiters: ['.', '.', '-'],
-        blocks: [2, 3, 3, 1],
-        uppercase: true
-    });
-    $(document).off('focusout', '.input-rg');
+    $(document).off('focusout keyup', '.input-rg');
 });
 
 // máscara e busca CEP 
-
 function buscaCEP() {
 
     const cep = $('.input-cep').val();
@@ -156,28 +150,23 @@ function buscaCEP() {
             });
     }
 };
-$(document).on('keyup', ".input-cep", function () {
+$(document).on('focusout keyup', ".input-cep", function () {
     console.log("Ativou máscara CEP");
     const cleave = new Cleave('.input-cep', {
         delimiters: ['-'],
         blocks: [5, 3],
         numericOnly: true
     });
-    if ($(this).val().length == 9) buscaCEP();
-});
-$(document).on('focusout', ".input-cep", function () {
-    console.log("Ativou máscara CEP");
-    const cleave = new Cleave('.input-cep', {
-        delimiters: ['-'],
-        blocks: [5, 3],
-        numericOnly: true
-    });
-    $(document).off('focusout', '.input-cep');
+
+    if ($(this).val().length == 9) {
+        buscaCEP();
+        $(document).off('focusout keyup', '.input-cep');
+    }
+
 });
 
 //  máscara Valor
-
-$(document).on('keyup', ".input-valor", function () {
+$(document).on('focusout keyup', ".input-valor", function () {
     console.log("Ativou máscara Valor");
     const cleave = new Cleave('.input-valor', {
         numeral: true,
@@ -185,59 +174,26 @@ $(document).on('keyup', ".input-valor", function () {
         delimiter: '.',
         numeralPositveOnly: true
     });
-    $(document).off('keyup', '.input-valor');
-});
-$(document).on('focusout', ".input-valor", function () {
-    console.log("Ativou máscara Valor");
-    const cleave = new Cleave('.input-valor', {
-        numeral: true,
-        numeralDecimalMark: ',',
-        delimiter: '.',
-        numeralPositveOnly: true
-    });
-    $(document).off('focusout', '.input-valor');
+    $(document).off('focusout keyup', '.input-valor');
 });
 
 // máscara Celular
+$(document).on('focusout keyup', ".input-celular", function () {
+    if ($("#celular").val().length == 15) {
+        console.log("Ativou máscara Celular");
+        const cleave = new Cleave('.input-celular', {
+            numericOnly: true,
+            blocks: [0, 3, 5, 4],
+            delimiters: ["(", ")", "-"]
+        });
+        $(document).off('focusout keyup', '.input-celular');
 
-$(document).on('keyup', ".input-celular", function () {
-    console.log("Ativou máscara Celular");
-    const cleave = new Cleave('.input-celular', {
-        numericOnly: true,
-        blocks: [0, 3, 5, 4],
-        delimiters: ["(", ")", "-"]
-    });
-    $(document).off('keyup', '.input-celular');
-});
-$(document).on('focusout', ".input-celular", function () {
-    console.log("Ativou máscara Celular");
-    const cleave = new Cleave('.input-celular', {
-        numericOnly: true,
-        blocks: [0, 3, 5, 4],
-        delimiters: ["(", ")", "-"]
-    });
-    $(document).off('focusout', '.input-celular');
-});
-
-// máscara data
-
-$(document).on('keyup', ".input-data", function () {
-    console.log("Ativou máscara Data");
-    const cleave = new Cleave('.input-data', {
-        numericOnly: true,
-        blocks: [2, 2, 4],
-        delimiters: ["/", "/", "/"],
-        numeralPositveOnly: true
-    });
-    $(document).off('keyup', '.input-data');
-});
-$(document).on('focusout', ".input-data", function () {
-    console.log("Ativou máscara Data");
-    const cleave = new Cleave('.input-data', {
-        numericOnly: true,
-        blocks: [2, 2, 4],
-        delimiters: ["/", "/", "/"],
-        numeralPositveOnly: true
-    });
-    $(document).off('focusout', '.input-data');
+    } else {
+        console.log("Ativou máscara Telefone");
+        const cleave = new Cleave('.input-celular', {
+            numericOnly: true,
+            blocks: [0, 3, 4, 5],
+            delimiters: ["(", ")", "-"]
+        });
+    }
 });

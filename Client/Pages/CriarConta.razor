@@ -1,43 +1,45 @@
 @page "/CriarConta"
-@using System.Net.Http;
-@using BlazorValidation.Data;
-@inject HttpClient Http;
+@using System.Net.Http
+@using BlazorValidation.Data
+@inject HttpClient Http
 
 <div class="container text-center">
     <div class="col-md-12">
         <h2>Cadastre-se agora mesmo</h2>
-        <EditForm Model="@model" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset" class="text-left">
-            <DataAnnotationsValidator />
+        <EditForm Model="@pessoaFisica" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset" class="text-left"
+            OnInvalidSubmit="@HandleInvalidSubmit">
+            <ObjectGraphDataAnnotationsValidator />
+            <div class="alert @StatusClass">@StatusMessage</div>
             <hr />
             <h4>Informações Pessoais</h4>
             <div class="row">
                 <div class="form-group col-12">
                     <Label>Nome Completo</Label>
-                    <InputText @bind-Value="model.pessoaFisica.Nome" class="form-control" />
-                    <ValidationMessage For="@(() => model.pessoaFisica.Nome)" />
+                    <InputText @bind-Value="pessoaFisica.Nome" class="form-control" />
+                    <ValidationMessage For="@(() => pessoaFisica.Nome)" />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <Label>CPF</Label>
-                    <InputText @bind-Value="model.pessoaFisica.CPF" class="form-control input-cpf" />
-                    <ValidationMessage For="@(() => model.pessoaFisica.CPF)" />
+                    <InputText @bind-Value="pessoaFisica.CPF" class="form-control input-cpf" />
+                    <ValidationMessage For="@(() => pessoaFisica.CPF)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label>RG</Label>
-                    <InputText @bind-Value="model.pessoaFisica.RG" class="form-control input-rg" />
-                    <ValidationMessage For="@(() => model.pessoaFisica.RG)" />
+                    <InputText @bind-Value="pessoaFisica.RG" class="form-control input-rg" />
+                    <ValidationMessage For="@(() => pessoaFisica.RG)" />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <Label>Data Nascimento</Label>
-                    <InputDate @bind-Value="model.pessoaFisica.DataNascimento" class="form-control input-data" />
-                    <ValidationMessage For="@(() => model.pessoaFisica.DataNascimento)" /> 
+                    <InputDate @bind-Value="pessoaFisica.DataNascimento" class="form-control" />
+                    <ValidationMessage For="@(() => pessoaFisica.DataNascimento)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label>Estado civil</Label>
-                    <InputSelect @bind-Value="model.pessoaFisica.EstadoCivil" class="form-control">
+                    <InputSelect @bind-Value="pessoaFisica.EstadoCivil" class="form-control">
                         <option value=""> Selecione </option>
                         <option value="Solteiro"> Solteiro </option>
                         <option value="Relaciomento Sério"> Relaciomento Sério </option>
@@ -46,56 +48,67 @@
                         <option value="Divorciado"> Divorciado </option>
                         <option value="Viúvo"> Viúvo </option>
                     </InputSelect>
-                    <ValidationMessage For="@(() => model.pessoaFisica.EstadoCivil)" /> 
+                    <ValidationMessage For="@(() => pessoaFisica.EstadoCivil)" />
                 </div>
             </div>
+
             <hr />
             <h4>Endereço</h4>
+
             <div class="row align-items-end">
-                <div class="form-group col-md-4 col-12">
+                <div class="form-group col-md-4 col-12 my-0">
                     <Label>CEP</Label>
-                    <InputText @bind-Value="model.pessoa.CEP" class="form-control input-cep" placeholder="CEP" />
-                    <ValidationMessage For="@(() => model.pessoa.CEP)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.CEP" id="cep" class="form-control input-cep"
+                        placeholder="CEP" />
                 </div>
-                <div class="form-group col-md-4" onclick="buscaCEP()">
+                <div class="form-group col-md-4 my-0" onclick="buscaCEP()">
                     <a class="btn btn-primary text-center icone-cep">
                         Buscar CEP <i class="fa fa-search"></i>
                     </a>
                 </div>
             </div>
+            <div class="mx-0">
+                <ValidationMessage For="@(() =>  pessoaFisica.Pessoa.CEP)" />
+                <br>
+            </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <Label> Logradouro </Label>
-                    <InputText @bind-Value="model.pessoa.Endereco" class="form-control" id="endereco" placeholder="Endereço" />
-                    <ValidationMessage For="@(() => model.pessoa.Endereco)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.Endereco" class="form-control" id="endereco"
+                        placeholder="Endereço" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Endereco)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label> Número </Label>
-                    <InputNumber @bind-Value="model.pessoa.Numero" class="form-control" id="numero" placeholder="Número" />
-                    <ValidationMessage For="@(() => model.pessoa.Numero)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.Numero" class="form-control" id="numero"
+                        placeholder="Número" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Numero)" />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <Label>Bairro</Label>
-                    <InputText @bind-Value="model.pessoa.Bairro" class="form-control" id="bairro" placeholder="Bairro" />
-                    <ValidationMessage For="@(() => model.pessoa.Bairro)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.Bairro" class="form-control" id="bairro"
+                        placeholder="Bairro" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Bairro)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label>Cidade</Label>
-                    <InputText @bind-Value="model.pessoa.Cidade" class="form-control" id="cidade" placeholder="Cidade" />
-                    <ValidationMessage For="@(() => model.pessoa.Cidade)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.Cidade" class="form-control" id="cidade"
+                        placeholder="Cidade" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Cidade)" />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <Label>Complemento</Label>
-                    <InputText @bind-Value="model.pessoa.Complemento" class="form-control" id="complemento" placeholder="complemento" />
-                    <ValidationMessage For="@(() => model.pessoa.Complemento)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.Complemento" class="form-control" id="complemento"
+                        placeholder="Complemento" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Complemento)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label>UF (Estado)</Label>
-                    <InputSelect @bind-Value="model.pessoaFisica.EstadoCivil" class="form-control" id="UF" >
+                    <InputSelect @bind-Value="pessoaFisica.Pessoa.Uf" class="form-control" id="UF">
                         <option value=""> Selecione </option>
                         <option value="AC"> Acre </option>
                         <option value="AL"> Alagoas </option>
@@ -125,7 +138,7 @@
                         <option value="SE"> Sergipe </option>
                         <option value="TO"> Tocantins </option>
                     </InputSelect>
-                    <ValidationMessage For="@(() => model.pessoa.Uf)" /> 
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Uf)" />
                 </div>
             </div>
             <hr />
@@ -133,98 +146,97 @@
             <div class="row">
                 <div class="form-group col-md-6 col-12">
                     <Label for="Renda">Renda</Label>
-                    <InputNumber @bind-Value="model.pessoa.Renda" class="form-control input-valor" id="Renda" placeholder="Renda" />
-                    <ValidationMessage For="@(() => model.pessoa.Renda)" /> 
+                    <InputNumber @bind-Value="pessoaFisica.Pessoa.Renda" class="form-control input-valor" id="Renda"
+                        placeholder="Renda" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Renda)" />
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <Label for="celular">Celular</Label>
-                    <InputText @bind-Value="model.pessoa.Celular" class="form-control input-celular" id="celular" placeholder="Celular"/>
-                    <ValidationMessage For="@(() => model.pessoa.Celular)" /> 
+                    <InputText @bind-Value="pessoaFisica.Pessoa.Telefone" class="form-control input-celular"
+                        id="celular" placeholder="Celular" />
+                    <ValidationMessage For="@(() => pessoaFisica.Pessoa.Telefone)" />
                 </div>
             </div>
             <hr />
             <h4>Dados de acesso</h4>
             <div class="form-group">
                 <Label>Email</Label>
-                <InputText @bind-Value="model.pessoa.Email" class="form-control" placeholder="Email" />
-                <ValidationMessage For="@(() => model.pessoa.Email)" /> 
+                <InputText @bind-Value="pessoaFisica.Pessoa.Email" class="form-control" placeholder="Email" />
+                <ValidationMessage For="@(() => pessoaFisica.Pessoa.Email)" />
             </div>
             <div class="row">
                 <div class="row form-group col-md-6 col-12 p-0 m-0 align-items-end">
-                    <div class="form-group col-md-7 col-12">
-                        <Label>Senha</Label>
-                        <InputText @bind-Value="model.pessoa.Senha" class="form-control senha" id="senha"
-                        placeholder="Senha" />
-                        <ValidationMessage For="@(() => model.pessoa.Senha)" /> 
-                    </div>
-                    <div class="form-group col-md-5 col-12">
-                        <a class="btn btn-primary verSenha">
-                            <span class="senha">Ver senha</span>
-                        </a>
+                    <div class="form-group col-12">
+                        <Label>Login</Label>
+                        <InputText @bind-Value="pessoaFisica.Pessoa.Login" class="form-control" id="login"
+                            placeholder="Login" />
+                        <ValidationMessage For="@(() => pessoaFisica.Pessoa.Login)" />
                     </div>
                 </div>
                 <div class="row form-group col-md-6 col-12 p-0 m-0 align-items-end">
                     <div class="form-group col-md-7 col-12">
-                        <Label>Confirmar senha</Label>
-                        <InputText @bind-Value="model.pessoa.ConfirmarSenha" class="form-control senha" min="5" id="senhaConfimar"
-                        name="senhaConfimar" placeholder="Confirmar senha" />
-                        <ValidationMessage For="@(() => model.pessoa.ConfirmarSenha)" /> 
+                        <Label>Senha</Label>
+                        <InputText @bind-Value="pessoaFisica.Pessoa.Senha" class="form-control senha" id="senha"
+                            placeholder="Senha" />
                     </div>
                     <div class="form-group col-md-5 col-12">
                         <a class="btn btn-primary verSenha">
                             <span class="senha">Ver senha</span>
                         </a>
                     </div>
+                    <div class="row mx-1">
+                        <ValidationMessage For="@(() => pessoaFisica.Pessoa.Senha)" />
+                    </div>
                 </div>
             </div>
-        </EditForm>
-        @* <EditForm Model="@pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset" class="text-left">
-            
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="CheckTermos">
-                <Label class="form-check-Label" for="CheckTermos">
-                    Concordo com os <a>Termos de uso</a>
-                </Label>
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="CheckMarketing">
-                <Label class="form-check-Label" for="CheckMarketing">
-                    Aceito o <a>uso dos meus dados para marketing personalizado</a>
-                </Label>
-            </div>
-        </EditForm> *@
             <div class="text-center">
                 <a class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
-                <button type="submit" class="btn btn-success">Fazer o cadastro</button>
+                @* <button type="submit" class="btn btn-success">Fazer o cadastro</button> *@
+                <button class="btn btn-success" type="submit">Fazer o cadastro</button>
             </div>
+            <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+        </EditForm>
         <br>
     </div>
 </div>
 
 @code {
-    /* private PessoaFisica pessoaFisica = new PessoaFisica();
-    private Pessoa pessoa = new Pessoa(); */
     private EditContext editContext { get; set; }
 
-    ComplexModel model = new ComplexModel { 
-        pessoa = new Pessoa(), 
-        pessoaFisica = new PessoaFisica()
-    };
+    PessoaFisica pessoaFisica = new PessoaFisica();
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(pessoaFisica);
+    }
 
     private async Task HandleValidSubmit()
     {
+
+        StatusClass = "alert-info";
+        StatusMessage = DateTime.Now + " Handle valid submit";
+
+
         Console.WriteLine("OnValidSubmit");
 
+        Console.WriteLine(pessoaFisica);
+
         //Enviar dados para o Controller no Backend
-        var teste = await Http.PostAsJsonAsync("/Register2/Create", model);
+        await Http.PostAsJsonAsync("/Register2/Create", pessoaFisica);
+    }
+
+    private string StatusMessage;
+    private string StatusClass;
+
+    protected void HandleInvalidSubmit()
+    {
+        StatusClass = "alert-danger";
+        StatusMessage = DateTime.Now + " Handle invalid submit";
     }
 
     private void HandleReset()
     {
-        model = new ComplexModel { 
-            pessoa = new Pessoa(), 
-            pessoaFisica = new PessoaFisica()
-        };
-        editContext = new EditContext(model);
+        PessoaFisica pessoaFisica = new PessoaFisica();
+        editContext = new EditContext(pessoaFisica);
     }
 }
