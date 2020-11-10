@@ -7,8 +7,6 @@ namespace DirectBusiness.Shared
     {
         [Key]
         public int Id {get; set;}
-        
-        public int IdPessoa { get; set; }
 
         [ValidateComplexType]
         public Pessoa Pessoa { get; set; } = new Pessoa();

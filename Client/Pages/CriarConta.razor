@@ -222,8 +222,9 @@
         Console.WriteLine(pessoaFisica);
 
         //Enviar dados para o Controller no Backend
+        //await Http.PostAsJsonAsync("/Pessoa/Create", pessoaFisica.Pessoa);
         await Http.PostAsJsonAsync("/PessoaFisica/Create", pessoaFisica);
-        NavigationManager.NavigateTo("PessoaFisica/List");
+        //NavigationManager.NavigateTo("PessoaFisica/List");
     }
 
     private string StatusMessage;
