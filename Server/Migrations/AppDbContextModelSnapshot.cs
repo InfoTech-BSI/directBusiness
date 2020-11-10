@@ -229,7 +229,8 @@ namespace DirectBusiness.Server.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Numero")
-                        .HasColumnType("int");
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<double>("Renda")
                         .HasColumnType("double");
@@ -239,7 +240,8 @@ namespace DirectBusiness.Server.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Telefone")
-                        .HasColumnType("int");
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Uf")
                         .IsRequired()
@@ -261,15 +263,12 @@ namespace DirectBusiness.Server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("DataNascimento")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("DateTime");
 
                     b.Property<string>("EstadoCivil")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("IdPessoa")
-                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()

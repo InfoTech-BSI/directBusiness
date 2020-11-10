@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+using System;
+
 namespace DirectBusiness.Server.Migrations
 {
     public partial class InitialCreate : Migration
@@ -15,12 +17,13 @@ namespace DirectBusiness.Server.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Email = table.Column<string>(nullable: false),
                     Renda = table.Column<double>(nullable: false),
-                    Telefone = table.Column<int>(nullable: false),
+                    Telefone = table.Column<string>(nullable: false),
                     Endereco = table.Column<string>(nullable: false),
+                    CEP = table.Column<string>(nullable: false),
                     Bairro = table.Column<string>(nullable: false),
-                    Numero = table.Column<int>(nullable: false),
+                    Numero = table.Column<string>(nullable: false),
                     Cidade = table.Column<string>(nullable: false),
-                    Complemento = table.Column<string>(nullable: false),
+                    Complemento = table.Column<string>(nullable: true),
                     Uf = table.Column<string>(maxLength: 2, nullable: false),
                     Login = table.Column<string>(nullable: false),
                     Senha = table.Column<string>(nullable: false)
@@ -62,12 +65,11 @@ namespace DirectBusiness.Server.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdPessoa = table.Column<int>(nullable: false),
                     PessoaIdPessoa = table.Column<int>(nullable: true),
                     EstadoCivil = table.Column<string>(nullable: false),
                     RG = table.Column<string>(nullable: false),
                     CPF = table.Column<string>(nullable: false),
-                    DataNascimento = table.Column<int>(nullable: false),
+                    DataNascimento = table.Column<DateTime>(nullable: false),
                     Nome = table.Column<string>(nullable: false)
                 },
                 constraints: table =>

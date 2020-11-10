@@ -33,13 +33,16 @@ public class PessoaFisicaController : Controller{
     public async Task<ActionResult> Post([FromBody] PessoaFisica pessoaFisica){
         try
         {
+            Pessoa pessoa = new Pessoa();
+            pessoa = pessoaFisica.Pessoa;
+
             var novaPessoa = new PessoaFisica{
-                IdPessoa = pessoaFisica.IdPessoa,
                 EstadoCivil = pessoaFisica.EstadoCivil,
                 RG = pessoaFisica.RG,
                 CPF = pessoaFisica.CPF,
                 DataNascimento = pessoaFisica.DataNascimento,
-                Nome = pessoaFisica.Nome
+                Nome = pessoaFisica.Nome,
+                Pessoa = pessoa
             };
 
             banco.Add(novaPessoa);
