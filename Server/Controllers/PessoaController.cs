@@ -58,6 +58,18 @@ public class PessoaController : Controller{
     }
 
     [HttpPut]
+    [Route("Login")]
+    public async Task<ActionResult> Login([FromBody] Pessoa pessoa){
+        var usuario = await banco.Pessoa.FirstOrDefaultAsync(p => p.Login == pessoa.Login && p.Senha == pessoa.Senha);
+        if(usuario != null){
+            return Ok(usuario);
+        }
+        else{
+            return null;
+        }
+    }
+
+    [HttpPut]
     [Route("Edit")]
     public async Task<ActionResult> Put([FromBody] Pessoa pessoa){
         try
