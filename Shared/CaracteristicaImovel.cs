@@ -19,8 +19,8 @@ namespace DirectBusiness.Shared
         public bool Estacionamento { get; set; }
         [Required(ErrorMessage = "Metragem do imóvel é obrigatório")] 
         public double Metragem { get; set; }
-        [Required(ErrorMessage = "Pets é obrigatório")] 
-        public bool Pets { get; set; }
+        // [Required(ErrorMessage = "Pets é obrigatório")] 
+        // public bool Pets { get; set; }
         [Required(ErrorMessage = "Mobiliado é obrigatório")] 
         public bool Mobiliado { get; set; }
         // [Required(ErrorMessage = "Apartamento é obrigatório")] 
