@@ -9,22 +9,100 @@
 
 <div class="card m-3 text-center">
     <h4 class="card-header">Meu Perfil</h4>
-    @* <EditForm Model="@pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
-        <DataAnnotationsValidator/> *@
     <div class="card-body">
-    <form class="form-row justify-content">
-        <div class="form-row">
-            <div class="form-group col-md-6">
 
-                <input type="text" class="form-control" id="Nome" placeholder="Nome">
+        <EditForm Model="@pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
+            <DataAnnotationsValidator />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Email</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Email" />
+                        <ValidationMessage For="@( () => pessoa.Email )" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Renda</label>
+                    <div>
+                        <InputNumber class="form-control" @bind-Value="@pessoa.Renda" />
+                        <ValidationMessage For="@( () => pessoa.Renda )" />
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label>Telefone</label>
+                    <div>
+                        <InputNumber class="form-control" @bind-Value="@pessoa.Telefone" />
+                        <ValidationMessage For="@( () => pessoa.Telefone )" />
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label>Endereço</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Endereco" />
+                        <ValidationMessage For="@( () => pessoa.Endereco )" />
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label>Bairro</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Bairro" />
+                        <ValidationMessage For="@( () => pessoa.Bairro )" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Número</label>
+                    <div>
+                        <InputNumber class="form-control" @bind-Value="@pessoa.Numero" />
+                        <ValidationMessage For="@( () => pessoa.Numero )" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Cidade</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Cidade" />
+                        <ValidationMessage For="@( () => pessoa.Cidade )" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Complemento</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Complemento" />
+                        <ValidationMessage For="@( () => pessoa.Complemento )" />
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label>UF</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Uf" />
+                        <ValidationMessage For="@( () => pessoa.Uf )" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Senha</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Senha" />
+                        <ValidationMessage For="@( () => pessoa.Senha )" />
+                    </div>
+                </div>
 
             </div>
-        </div>
-        
-    </form>
+        </EditForm>
     </div>
-    @* </EditForm> *@
 </div>
+
 
 @code {
     private Pessoa pessoa = new Pessoa();
