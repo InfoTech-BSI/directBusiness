@@ -8,8 +8,8 @@ namespace DirectBusiness.Server
         public AppDbContext(DbContextOptions<AppDbContext> options) : base (options){}
 
         public DbSet<Imovel> Imovel { get; set; }
-        public DbSet<CaracteristicaImovel> CaracteristicaImovel { get; set; }
-        public DbSet<TipoImovel> TipoImovel { get; set; }
+        //public DbSet<CaracteristicaImovel> CaracteristicaImovel { get; set; }
+        //public DbSet<TipoImovel> TipoImovel { get; set; }
         public DbSet<Midia> Midia { get; set; }
 
         public DbSet<Pessoa> Pessoa { get; set; }

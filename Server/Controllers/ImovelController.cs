@@ -22,6 +22,14 @@ public class ImovelController : Controller{
     }
 
     [HttpGet]
+    [Route("GetById")]
+    public async Task<IActionResult> Get([FromQuery] string id)
+    {
+        var imovel = await banco.Imovel.SingleOrDefaultAsync(x => x.IdImovel == Convert.ToInt32(id));
+        return Ok(imovel);
+    }
+
+    [HttpGet]
     [Route("List/{id}")]
     public async Task<IActionResult> GetById([FromRoute] int id){
         var imoveis = await banco.Imovel.FindAsync(id);
@@ -34,10 +42,11 @@ public class ImovelController : Controller{
         try
         {
             var novoImovel = new Imovel{
-                IdTipoImovel = imovel.IdTipoImovel,
-                IdPessoa = imovel.IdPessoa,
+                TipoImovel = imovel.TipoImovel,
+                IdPessoa = 1,//imovel.IdPessoa,
                 Matricula = imovel.Matricula,
                 Descricao = imovel.Descricao,
+                CEP = imovel.CEP,
                 Logradouro = imovel.Logradouro,
                 Bairro = imovel.Bairro,
                 Numero = imovel.Numero,
@@ -45,7 +54,13 @@ public class ImovelController : Controller{
                 Complemento = imovel.Complemento,
                 UF = imovel.UF,
                 Valor = imovel.Valor,
-                Status = imovel.Status
+                Status = imovel.Status,
+
+                QtdeQuartos = imovel.QtdeQuartos,
+                QtdeBanheiros = imovel.QtdeBanheiros,
+                Estacionamento = imovel.Estacionamento,
+                Metragem = imovel.Metragem,
+                Mobiliado = imovel.Mobiliado
             };
 
             banco.Add(novoImovel);

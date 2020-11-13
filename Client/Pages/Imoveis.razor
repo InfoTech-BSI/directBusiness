@@ -1,4 +1,7 @@
 @page "/imoveis"
+@using System.Net.Http
+@inject HttpClient Http
+
 <div class="conteiner text-center">
     <h1 class="ml-5 text-left"> Buscar imóveis </h1>
     <form class="form-inline justify-content-center">
@@ -38,201 +41,28 @@
     <br>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3">
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=1" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-primary"> Aluguel </span>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 3 Quartos </li>
-                                <li class="list-group-item"> 2 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 2 carros </li>
-                            </ul>
+            @foreach (var item in imoveisList)
+            {
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=1" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TipoImovel</h5>
+                            <span class="badge badge-primary">@item.Status</span>
+                            <p class="card-text">@item.Cidade/@item.UF</p>
                         </div>
-                        <br>
-                        <a href="/imoveis/id" class="btn btn-primary"> Ver imóvel </a>
+                        <div class="card-footer">
+                            <div class="w-100">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"> R$ @item.Valor </li>
+                                </ul>
+                            </div>
+                            <br> 
+                            <a href="/imoveis/@item.IdImovel.ToString()" class="btn btnAmarelo"> Ver imóvel </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=2" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-primary"> Aluguel </span>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a short card.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Suites </li>
-                                <li class="list-group-item"> 1 Quarto </li>
-                                <li class="list-group-item"> 3 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 3 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=3" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-primary"> Aluguel </span>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Suites </li>
-                                <li class="list-group-item"> 1 Quarto </li>
-                                <li class="list-group-item"> 3 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 3 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=4" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Suites </li>
-                                <li class="list-group-item"> 2 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 2 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=5" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-primary"> Aluguel </span>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a short card.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 1 Quarto </li>
-                                <li class="list-group-item"> 1 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 1 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=6" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Quarto </li>
-                                <li class="list-group-item"> 1 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 1 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=7" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Quarto </li>
-                                <li class="list-group-item"> 1 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 1 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=8" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-primary"> Aluguel </span>
-                        <p class="card-text">This is a short card.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Quarto </li>
-                                <li class="list-group-item"> 1 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 1 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card h-100">
-                    <img class="img-fluid card-img-top" src="https://picsum.photos/400/300?random=9" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <span class="badge badge-primary"> Aluguel </span>
-                        <span class="badge badge-secondary"> Venda </span>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="w-100">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> 2 Quarto </li>
-                                <li class="list-group-item"> 1 Banheiros </li>
-                                <li class="list-group-item"> Vaga para 1 carros </li>
-                            </ul>
-                        </div>
-                        <br>
-                        <a href="#" class="btn btn-primary"> Ver imóvel </a>
-                    </div>
-                </div>
-            </div>
+            } 
         </div>
     </div>
     <div class="btn-group" role="group">
@@ -248,3 +78,16 @@
         </button>
     </div>
 </div>
+
+@code {
+    private List<Imovel> imoveisList = new List<Imovel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var imoveis = await Http.GetFromJsonAsync<List<Imovel>>("/Imovel/List");
+        foreach (var item in imoveis)
+        {
+            imoveisList.Add(item);
+        }
+    }
+}

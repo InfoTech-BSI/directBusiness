@@ -9,55 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DirectBusiness.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201002225333_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201113220245_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("DirectBusiness.Shared.CaracteristicaImovel", b =>
-                {
-                    b.Property<int>("IdCarac")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Apartamento")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("Estacionamento")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("IdImovel")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ImovelIdImovel")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Metragem")
-                        .HasColumnType("double");
-
-                    b.Property<bool>("Mobiliado")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("Pets")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("QtdeBanheiros")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QtdeQuartos")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdCarac");
-
-                    b.HasIndex("ImovelIdImovel");
-
-                    b.ToTable("CaracteristicaImovel");
-                });
 
             modelBuilder.Entity("DirectBusiness.Shared.Contrato", b =>
                 {
@@ -125,22 +85,25 @@ namespace DirectBusiness.Server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Cidade")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("IdPessoa")
-                        .HasColumnType("int");
+                    b.Property<bool>("Estacionamento")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("IdTipoImovel")
+                    b.Property<int>("IdPessoa")
                         .HasColumnType("int");
 
                     b.Property<string>("Logradouro")
@@ -150,32 +113,42 @@ namespace DirectBusiness.Server.Migrations
                     b.Property<int>("Matricula")
                         .HasColumnType("int");
 
+                    b.Property<double>("Metragem")
+                        .HasColumnType("double");
+
+                    b.Property<bool>("Mobiliado")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
                     b.Property<int?>("PessoaIdPessoa")
                         .HasColumnType("int");
 
+                    b.Property<int>("QtdeBanheiros")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtdeQuartos")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("TipoImovelIdTipoImovel")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoImovel")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("UF")
                         .IsRequired()
                         .HasColumnType("varchar(2) CHARACTER SET utf8mb4")
                         .HasMaxLength(2);
 
-                    b.Property<double>("Valor")
-                        .HasColumnType("double");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(15,2)");
 
                     b.HasKey("IdImovel");
 
                     b.HasIndex("PessoaIdPessoa");
-
-                    b.HasIndex("TipoImovelIdTipoImovel");
 
                     b.ToTable("Imovel");
                 });
@@ -213,12 +186,16 @@ namespace DirectBusiness.Server.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasColumnType("varchar(9) CHARACTER SET utf8mb4")
+                        .HasMaxLength(9);
+
                     b.Property<string>("Cidade")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Email")
@@ -231,9 +208,10 @@ namespace DirectBusiness.Server.Migrations
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
 
-                    b.Property<int>("Numero")
+                    b.Property<string>("Numero")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -242,11 +220,13 @@ namespace DirectBusiness.Server.Migrations
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
+                        .HasMaxLength(50);
 
-                    b.Property<int>("Telefone")
+                    b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(15) CHARACTER SET utf8mb4")
+                        .HasMaxLength(15);
 
                     b.Property<string>("Uf")
                         .IsRequired()
@@ -266,10 +246,11 @@ namespace DirectBusiness.Server.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(14) CHARACTER SET utf8mb4")
+                        .HasMaxLength(14);
 
                     b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("DateTime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("EstadoCivil")
                         .IsRequired()
@@ -284,7 +265,8 @@ namespace DirectBusiness.Server.Migrations
 
                     b.Property<string>("RG")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(12) CHARACTER SET utf8mb4")
+                        .HasMaxLength(12);
 
                     b.HasKey("Id");
 
@@ -335,28 +317,6 @@ namespace DirectBusiness.Server.Migrations
                     b.ToTable("TipoContrato");
                 });
 
-            modelBuilder.Entity("DirectBusiness.Shared.TipoImovel", b =>
-                {
-                    b.Property<int>("IdTipoImovel")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("IdTipoImovel");
-
-                    b.ToTable("TipoImovel");
-                });
-
-            modelBuilder.Entity("DirectBusiness.Shared.CaracteristicaImovel", b =>
-                {
-                    b.HasOne("DirectBusiness.Shared.Imovel", "Imovel")
-                        .WithMany()
-                        .HasForeignKey("ImovelIdImovel");
-                });
-
             modelBuilder.Entity("DirectBusiness.Shared.Contrato", b =>
                 {
                     b.HasOne("DirectBusiness.Shared.Imovel", "Imovel")
@@ -381,10 +341,6 @@ namespace DirectBusiness.Server.Migrations
                     b.HasOne("DirectBusiness.Shared.Pessoa", "Pessoa")
                         .WithMany()
                         .HasForeignKey("PessoaIdPessoa");
-
-                    b.HasOne("DirectBusiness.Shared.TipoImovel", "TipoImovel")
-                        .WithMany()
-                        .HasForeignKey("TipoImovelIdTipoImovel");
                 });
 
             modelBuilder.Entity("DirectBusiness.Shared.Midia", b =>
