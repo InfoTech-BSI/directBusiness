@@ -13,12 +13,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.1" PrivateAssets="all" />
-<<<<<<< HEAD
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
-=======
     <PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
->>>>>>> 2c257a303009890f1e4f811ffc0d1e445f509246
   </ItemGroup>
 
   <ItemGroup>

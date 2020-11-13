@@ -11,8 +11,6 @@ namespace DirectBusiness.Server.Controllers
     [Route("[controller]")]
     public class PessoaController : Controller
     {
-
-
         private readonly AppDbContext banco;
 
         public PessoaController(AppDbContext db)
@@ -28,28 +26,16 @@ namespace DirectBusiness.Server.Controllers
             return Ok(pessoas);
         }
 
-<<<<<<< HEAD
-    [HttpPut]
-    [Route("Login")]
-    public async Task<ActionResult> Login([FromBody] Pessoa pessoa){
-        var usuario = await banco.Pessoa.FirstOrDefaultAsync(p => p.Login == pessoa.Login && p.Senha == pessoa.Senha);
-        if(usuario != null){
-            return Ok(usuario);
-        }
-        else{
-            return null;
-        }
-    }
+        // [HttpPost]
+        // [Route("Login")]
+        // public async Task<IActionResult> Login([FromBody] Pessoa pessoa }){
+        //     var usuario = await banco.Pessoa.FirstOrDefaultAsync<Pessoa>(p => p.Email == pessoa.Email && p.Senha == pessoa.Senha);
+        //     return Ok(usuario);
+        // }
 
-    [HttpPut]
-    [Route("Edit")]
-    public async Task<ActionResult> Put([FromBody] Pessoa pessoa){
-        try
-=======
         [HttpGet]
         [Route("List/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
->>>>>>> 2c257a303009890f1e4f811ffc0d1e445f509246
         {
             var pessoa = await banco.Pessoa.FindAsync(id);
             return Ok(pessoa);
