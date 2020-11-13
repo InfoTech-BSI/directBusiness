@@ -39,7 +39,7 @@ public class CaracteristicaImovelController : Controller{
                 QtdeBanheiros = caracteristicas.QtdeBanheiros,
                 Estacionamento = caracteristicas.Estacionamento,
                 Metragem = caracteristicas.Metragem,
-                Pets = caracteristicas.Pets,
+                //Pets = caracteristicas.Pets,
                 Mobiliado = caracteristicas.Mobiliado,
                 //Apartamento = caracteristicas.Apartamento
             };
