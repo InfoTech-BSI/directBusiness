@@ -19,6 +19,8 @@ namespace DirectBusiness.Shared
         public int Matricula { get; set; }
         [Required(ErrorMessage = "Descrição é obrigatório")] 
         public string Descricao { get; set; }
+        [Required(ErrorMessage = "CEP é obrigatório")] 
+        public string CEP { get; set; }
         [Required(ErrorMessage = "Logradouro é obrigatório")] 
         public string Logradouro { get; set; }
         [Required(ErrorMessage = "Bairro é obrigatório")] 

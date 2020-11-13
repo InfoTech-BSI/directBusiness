@@ -1,0 +1,234 @@
+@page "/imoveis/create"
+@using System.Net.Http
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<div class="container text-center">
+    <div class="col-md-12">
+        <h2>Cadastro de imóvel</h2>
+        <EditForm Model="@imovel" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset" class="text-left">
+            <ObjectGraphDataAnnotationsValidator />
+
+            <hr />
+            <h4>Informações Básicas</h4>
+
+            <div class="row">
+                <div class="form-group col-md-4 col-12">
+                    <label>Tipo de imóvel</label>
+                    <div>
+                        <select @bind="imovel.IdTipoImovel">
+                            <option value="">Selecione o tipo</option>
+                            @foreach (var tipo in tiposList)
+                            {
+                                <option value="@tipo.IdTipoImovel">@tipo.Descricao</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-12">
+                    <label>Matrícula</label>
+                    <div>
+                        <InputNumber @bind-Value="imovel.Matricula" class="form-control input-rg" />
+                        <ValidationMessage For="@(() => imovel.Matricula)" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 col-12">
+                    <Label>Status</Label>
+                    <div>
+                        <InputSelect @bind-Value="imovel.Status" class="form-control">
+                            <option value=""> Selecione</option>
+                            <option value="Aluguel"> Aluguel </option>
+                            <option value="Venda"> Venda </option>
+                            <option value="Ambos"> Ambos </option>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => imovel.Status)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12 col-12">
+                    <label>Descrição</label>
+                    <div>
+                        <InputTextArea @bind-Value="imovel.Descricao" class="form-control" placeholder="Descrição"></InputTextArea>
+                        <ValidationMessage For="@(() =>  imovel.Descricao)" />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <h4>Localização</h4>
+
+            <div class="row align-items-end">
+                <div class="form-group col-md-4 col-12 my-0">
+                    <Label>CEP</Label>
+                    <InputText @bind-Value="imovel.CEP" id="cep" class="form-control input-cep"
+                        placeholder="CEP" />
+                </div>
+                <div class="form-group col-md-4 my-0" onclick="buscaCEP()">
+                    <a class="btn btn-primary text-center icone-cep">
+                        Buscar CEP <i class="fa fa-search"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mx-0">
+                <ValidationMessage For="@(() =>  imovel.CEP)" />
+                <br>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-8 col-12">
+                    <Label> Logradouro </Label>
+                    <InputText @bind-Value="imovel.Logradouro" class="form-control" id="endereco"
+                        placeholder="Logradouro" name="endereco" />
+                    <ValidationMessage For="@(() => imovel.Logradouro)" />
+                </div>
+                <div class="form-group col-md-4 col-12">
+                    <Label> Número </Label>
+                    <InputNumber @bind-Value="imovel.Numero" class="form-control" id="numero"
+                        placeholder="Número" name="Numero" />
+                    <ValidationMessage For="@(() => imovel.Numero)" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <Label>Bairro</Label>
+                    <InputText @bind-Value="imovel.Bairro" class="form-control" id="bairro"
+                        placeholder="Bairro" name="Bairro" />
+                    <ValidationMessage For="@(() => imovel.Bairro)" />
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <Label>Cidade</Label>
+                    <InputText @bind-Value="imovel.Cidade" class="form-control" id="cidade"
+                        placeholder="Cidade" />
+                    <ValidationMessage For="@(() => imovel.Cidade)" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6 col-12">
+                    <Label>Complemento</Label>
+                    <InputText @bind-Value="imovel.Complemento" class="form-control" id="complemento"
+                        placeholder="Complemento" name="Complemento" />
+                    <ValidationMessage For="@(() => imovel.Complemento)" />
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <Label>UF (Estado)</Label>
+                    <InputSelect @bind-Value="imovel.UF" name="Uf" class="form-control" id="UF">
+                        <option value=""> Selecione </option>
+                        <option value="AC"> Acre </option>
+                        <option value="AL"> Alagoas </option>
+                        <option value="AP"> Amapá </option>
+                        <option value="AM"> Amazonas </option>
+                        <option value="BA"> Bahia </option>
+                        <option value="CE"> Ceará </option>
+                        <option value="ES"> Espírito Santo </option>
+                        <option value="DF"> Distrito Federal </option>
+                        <option value="GO"> Goiás </option>
+                        <option value="MA"> Maranhão </option>
+                        <option value="MT"> Mato Grosso </option>
+                        <option value="MS"> Mato Grosso do Sul </option>
+                        <option value="MG"> Minas Gerais </option>
+                        <option value="PA"> Pará </option>
+                        <option value="PB"> Paraíba </option>
+                        <option value="PR"> Paraná </option>
+                        <option value="PE"> Pernambuco </option>
+                        <option value="PI"> Piauí </option>
+                        <option value="RJ"> Rio de Janeiro </option>
+                        <option value="RN"> Rio Grande do Norte </option>
+                        <option value="RS"> Rio Grande do Sul </option>
+                        <option value="RO"> Rondônia </option>
+                        <option value="RR"> Roraima </option>
+                        <option value="SC"> Santa Catarina </option>
+                        <option value="SP"> São Paulo </option>
+                        <option value="SE"> Sergipe </option>
+                        <option value="TO"> Tocantins </option>
+                    </InputSelect>
+                    <ValidationMessage For="@(() => imovel.UF)" />
+                </div>
+            </div>
+
+            <hr />
+            <h4>Informações adicionais</h4>
+
+            <div class="row">
+                <div class="form-group col-md-2 col-12">
+                    <Label> Quartos </Label>
+                    <InputNumber @bind-Value="carac.QtdeQuartos" class="form-control" id="qtdeQuartos"
+                        placeholder="quartos" name="quartos" />
+                    <ValidationMessage For="@(() => carac.QtdeQuartos)" />
+                </div>
+
+                <div class="form-group col-md-2 col-12">
+                    <Label> Banheiros </Label>
+                    <InputNumber @bind-Value="carac.QtdeBanheiros" class="form-control" id="QtdeBanheiros"
+                        placeholder="Banheiros" name="banheiros" />
+                    <ValidationMessage For="@(() => carac.QtdeBanheiros)" />
+                </div>
+
+                <div class="form-group col-md-3 col-12">
+                    <Label> Estacionamento </Label>
+                    <InputSelect @bind-Value="carac.Estacionamento" name="Uf" class="form-control" id="Estacionamento">
+                        <option value=""> Selecione </option>
+                        <option value="SIM"> Sim </option>
+                        <option value="NAO"> Não </option>
+                    </InputSelect>
+                    <ValidationMessage For="@(() => carac.Estacionamento)" />
+                </div>
+
+                <div class="form-group col-md-2 col-12">
+                    <Label> Mobiliado </Label>
+                    <InputSelect @bind-Value="carac.Mobiliado" name="Mobiliado" class="form-control" id="Mobiliado">
+                        <option value=""> Selecione </option>
+                        <option value="SIM"> Sim </option>
+                        <option value="NAO"> Não </option>
+                    </InputSelect>
+                    <ValidationMessage For="@(() => carac.Mobiliado)" />
+                </div>
+
+                <div class="form-group col-md-3 col-12">
+                    <Label> Metragem </Label>
+                    <InputNumber @bind-Value="carac.Metragem" class="form-control" id="Metragem"
+                        placeholder="Metragem" name="Metragem" />
+                    <ValidationMessage For="@(() => carac.Metragem)" />
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
+                <button class="btn btnAmarelo" type="submit">Cadastrar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private Imovel imovel = new Imovel();
+    private CaracteristicaImovel carac = new CaracteristicaImovel();
+    private EditContext editContext { get; set; }
+    private List<TipoImovel> tiposList = new List<TipoImovel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var tipos = await Http.GetFromJsonAsync<List<TipoImovel>>("/TipoImovel/List");
+        foreach (var item in tipos)
+        {
+            tiposList.Add(item);
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await Http.PostAsJsonAsync("/Imovel/Create", imovel);
+        //NavigationManager.NavigateTo("");
+    }
+
+    private void HandleReset()
+    {
+        imovel = new Imovel();
+        editContext = new EditContext(imovel);
+    }
+}
