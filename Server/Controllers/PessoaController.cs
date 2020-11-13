@@ -34,6 +34,14 @@ namespace DirectBusiness.Server.Controllers
             return Ok(pessoa);
         }
 
+        [HttpGet]
+        [Route("GetById")]
+        public async Task<IActionResult> Get([FromQuery] string id)
+        {
+            var pessoa = await banco.Pessoa.SingleOrDefaultAsync(x => x.IdPessoa == Convert.ToInt32(id));
+            return Ok(pessoa);
+        }
+
         [HttpPost]
         [Route("Create")]
         public async Task<ActionResult> Post([FromBody] Pessoa pessoa)
