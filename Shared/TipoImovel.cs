@@ -10,6 +10,6 @@ namespace DirectBusiness.Shared
         [Required(ErrorMessage = "Descrição é obrigatório")] 
         public string Descricao { get; set; }
 
-        public List<Imovel> Imoveis { get; set; }
+        public ICollection<Imovel> Imoveis { get; set; }
     }
 }

@@ -16,13 +16,13 @@
                 <div class="form-group col-md-4 col-12">
                     <label>Tipo de imóvel</label>
                     <div>
-                        <select @bind="imovel.IdTipoImovel">
-                            <option value="">Selecione o tipo</option>
-                            @foreach (var tipo in tiposList)
-                            {
-                                <option value="@tipo.IdTipoImovel">@tipo.Descricao</option>
-                            }
-                        </select>
+                        <InputSelect @bind-Value="imovel.TipoImovel" class="form-control">
+                            <option value=""> Selecione</option>
+                            <option value="Casa"> Casa </option>
+                            <option value="Apartamento"> Apartamento </option>
+                            <option value="Chacara"> Chacara </option>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => imovel.TipoImovel)" />
                     </div>
                 </div>
 
@@ -55,6 +55,15 @@
                         <InputTextArea @bind-Value="imovel.Descricao" class="form-control" placeholder="Descrição"></InputTextArea>
                         <ValidationMessage For="@(() =>  imovel.Descricao)" />
                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4 col-12">
+                    <Label> Valor </Label>
+                    <InputNumber @bind-Value="imovel.Valor" class="form-control" id="valor"
+                        placeholder="Valor" name="Valor" />
+                    <ValidationMessage For="@(() => imovel.Valor)" />
                 </div>
             </div>
 
@@ -157,43 +166,41 @@
             <div class="row">
                 <div class="form-group col-md-2 col-12">
                     <Label> Quartos </Label>
-                    <InputNumber @bind-Value="carac.QtdeQuartos" class="form-control" id="qtdeQuartos"
+                    <InputNumber @bind-Value="imovel.QtdeQuartos" class="form-control" id="qtdeQuartos"
                         placeholder="quartos" name="quartos" />
-                    <ValidationMessage For="@(() => carac.QtdeQuartos)" />
+                    <ValidationMessage For="@(() => imovel.QtdeQuartos)" />
                 </div>
 
                 <div class="form-group col-md-2 col-12">
                     <Label> Banheiros </Label>
-                    <InputNumber @bind-Value="carac.QtdeBanheiros" class="form-control" id="QtdeBanheiros"
+                    <InputNumber @bind-Value="imovel.QtdeBanheiros" class="form-control" id="QtdeBanheiros"
                         placeholder="Banheiros" name="banheiros" />
-                    <ValidationMessage For="@(() => carac.QtdeBanheiros)" />
+                    <ValidationMessage For="@(() => imovel.QtdeBanheiros)" />
                 </div>
 
                 <div class="form-group col-md-3 col-12">
                     <Label> Estacionamento </Label>
-                    <InputSelect @bind-Value="carac.Estacionamento" name="Uf" class="form-control" id="Estacionamento">
-                        <option value=""> Selecione </option>
-                        <option value="SIM"> Sim </option>
-                        <option value="NAO"> Não </option>
+                    <InputSelect @bind-Value="imovel.Estacionamento" name="Uf" class="form-control" id="Estacionamento">
+                        <option value="1"> Sim </option>
+                        <option value="0"> Não </option>
                     </InputSelect>
-                    <ValidationMessage For="@(() => carac.Estacionamento)" />
+                    <ValidationMessage For="@(() => imovel.Estacionamento)" />
                 </div>
 
                 <div class="form-group col-md-2 col-12">
                     <Label> Mobiliado </Label>
-                    <InputSelect @bind-Value="carac.Mobiliado" name="Mobiliado" class="form-control" id="Mobiliado">
-                        <option value=""> Selecione </option>
-                        <option value="SIM"> Sim </option>
-                        <option value="NAO"> Não </option>
+                    <InputSelect @bind-Value="imovel.Mobiliado" name="Mobiliado" class="form-control" id="Mobiliado">
+                        <option value="1"> Sim </option>
+                        <option value="0"> Não </option>
                     </InputSelect>
-                    <ValidationMessage For="@(() => carac.Mobiliado)" />
+                    <ValidationMessage For="@(() => imovel.Mobiliado)" />
                 </div>
 
                 <div class="form-group col-md-3 col-12">
                     <Label> Metragem </Label>
-                    <InputNumber @bind-Value="carac.Metragem" class="form-control" id="Metragem"
+                    <InputNumber @bind-Value="imovel.Metragem" class="form-control" id="Metragem"
                         placeholder="Metragem" name="Metragem" />
-                    <ValidationMessage For="@(() => carac.Metragem)" />
+                    <ValidationMessage For="@(() => imovel.Metragem)" />
                 </div>
             </div>
 
@@ -207,10 +214,11 @@
 
 @code {
     private Imovel imovel = new Imovel();
-    private CaracteristicaImovel carac = new CaracteristicaImovel();
+    //private CaracteristicaImovel carac = new CaracteristicaImovel();
     private EditContext editContext { get; set; }
-    private List<TipoImovel> tiposList = new List<TipoImovel>();
+    //private List<TipoImovel> tiposList = new List<TipoImovel>();
 
+    /*
     protected override async Task OnInitializedAsync()
     {
         var tipos = await Http.GetFromJsonAsync<List<TipoImovel>>("/TipoImovel/List");
@@ -218,12 +226,12 @@
         {
             tiposList.Add(item);
         }
-    }
+    } */
 
     private async Task HandleValidSubmit()
     {
         await Http.PostAsJsonAsync("/Imovel/Create", imovel);
-        //NavigationManager.NavigateTo("");
+        NavigationManager.NavigateTo("/");
     }
 
     private void HandleReset()

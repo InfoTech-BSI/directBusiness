@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using System.Net.Http
+@inject HttpClient Http
 
 <div class="container">
     <div class="jumbotron jumbotron-fluid py-4">
@@ -51,47 +53,33 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-            <div class="card">
-                <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btnAmarelo">Ver imóvel</a>
+        @foreach (var item in imoveisList)
+        {
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                <div class="card">
+                    <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=1">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.TipoImovel</h5>
+                        <p class="card-text">@item.Descricao</p>
+                        <a href="/imoveis/@item.IdImovel.ToString()" class="btn btnAmarelo"> Ver imóvel </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-            <div class="card">
-                <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=2">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btnAmarelo">Ver imóvel</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-            <div class="card">
-                <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=3">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btnAmarelo">Ver imóvel</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-            <div class="card">
-                <img class="img-fluid card-img-top" src="https://picsum.photos/200/150?random=4">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btnAmarelo">Ver imóvel</a>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 
     @* <SurveyPrompt Title="How is Blazor working for you?" /> *@
 </div>
+
+@code {
+    private List<Imovel> imoveisList = new List<Imovel>(4);
+
+    protected override async Task OnInitializedAsync()
+    {
+        var imoveis = await Http.GetFromJsonAsync<List<Imovel>>("/Imovel/List");
+        foreach (var item in imoveis)
+        {
+            imoveisList.Add(item);
+        }
+    }
+}
