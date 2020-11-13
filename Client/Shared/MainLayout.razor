@@ -1,4 +1,9 @@
 ﻿@inherits LayoutComponentBase
+@using System.Net.Http
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using System.Threading.Tasks;
+@using Microsoft.AspNetCore.Components;
 
 @* <div class="sidebar">
     <NavMenu />
@@ -136,14 +141,17 @@
         </div>
         <div class="modal-body">
             <h1 class="display-5 text-center text-uppercase"> Login </h1>
-            <form>
+            <EditForm Model="pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
+                <DataAnnotationsValidator/>
                 <div class="form-group">
                     <label for="inputEmail"> Email ou CPF/CNPJ </label>
-                    <input type="text" placeholder="email@teste.com ou 123.456.789-98" class="form-control" id="inputEmail">
+                    <InputText placeholder="Email" class="form-control" id="inputEmail" @bind-Value="pessoa.Email"/>
+                    <ValidationMessage For="@( () => pessoa.Email )" />
                 </div>
                 <div class="form-group">
                     <label for="inputSenha"> Senha </label>
-                    <input type="password" placeholder="Sua senha" class="form-control" id="inputSenha">
+                    <InputText type="password" placeholder="Senha" class="form-control" id="inputSenha" @bind-Value="pessoa.Senha"/>
+                    <ValidationMessage For="@( () => pessoa.Senha )" />
                 </div>
                 <div class="form-group">
                     <a href="#modalRecuperarSenha" data-toggle="modal" data-target="#modalRecuperarSenha">Esqueci a senha</a>
@@ -153,22 +161,22 @@
                     <label class="form-check-label" for="exampleCheck1"> Deixar a conta salva nesse dispositivo </label>
                 </div>
                 <div class="text-center">
-                    <p> ou </p>
-                    <a href="#" class="btn cor-google btn-custom">
+                    <p> ou @mensagem</p>
+                    <button class="btn cor-google btn-custom">
                         <span class="fab fa-google btn-icon"></span>
                         Acessar via Google
-                    </a>
-                    <a href="#" class="btn cor-facebook btn-custom">
+                    </button>
+                    <button class="btn cor-facebook btn-custom">
                         <span class="fab fa-facebook-f btn-icon"></span>
                         Acessar via Facebook
-                    </a>
+                    </button>
                     <p> ou </p>
                     <h4><a href="CriarConta" id="CriarConta"> Crie uma conta </a></h4>
                     <br>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
                     <button type="submit" class="btn btnAzul"> Fazer login </button>
                 </div>
-            </form>
+            </EditForm>
         </div>
     </div>
   </div>
@@ -197,3 +205,38 @@
     </div>
   </div>
 </div>
+
+@code{
+    private Pessoa pessoa = new Pessoa();
+    private EditContext editContext { get; set; }
+
+    private HttpResponseMessage mensagem;
+
+    private async Task HandleValidSubmit()
+    {
+        pessoa.Login = "#########";
+        pessoa.Renda = 1;
+        pessoa.Telefone = "###############";
+        pessoa.CEP = "#########";
+        pessoa.Endereco = "#";
+        pessoa.Bairro = "#";
+        pessoa.Numero = "#";
+        pessoa.Cidade = "#";
+        pessoa.Complemento = "#";
+        pessoa.Uf = "#";
+        var usuario = await Http.PostAsJsonAsync<Pessoa>("/Pessoa/Login", pessoa);
+        mensagem = usuario;
+        /*Console.WriteLine(usuario);
+        if(usuario.IsSuccessStatusCode){
+            NavigationManager.NavigateTo("/imoveis");
+        }else{
+            NavigationManager.NavigateTo("/CriarConta");
+        }*/
+    }
+
+    private void HandleReset()
+    {
+        pessoa = new Pessoa();
+        editContext = new EditContext(pessoa);
+    }
+}

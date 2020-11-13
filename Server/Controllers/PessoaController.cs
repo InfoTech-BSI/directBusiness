@@ -11,8 +11,6 @@ namespace DirectBusiness.Server.Controllers
     [Route("[controller]")]
     public class PessoaController : Controller
     {
-
-
         private readonly AppDbContext banco;
 
         public PessoaController(AppDbContext db)
@@ -27,6 +25,13 @@ namespace DirectBusiness.Server.Controllers
             var pessoas = await banco.Pessoa.ToListAsync();
             return Ok(pessoas);
         }
+
+        // [HttpPost]
+        // [Route("Login")]
+        // public async Task<IActionResult> Login([FromBody] Pessoa pessoa }){
+        //     var usuario = await banco.Pessoa.FirstOrDefaultAsync<Pessoa>(p => p.Email == pessoa.Email && p.Senha == pessoa.Senha);
+        //     return Ok(usuario);
+        // }
 
         [HttpGet]
         [Route("List/{id}")]

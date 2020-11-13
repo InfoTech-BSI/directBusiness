@@ -14,7 +14,7 @@ namespace DirectBusiness.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("DirectBusiness.Shared.CaracteristicaImovel", b =>
@@ -22,9 +22,6 @@ namespace DirectBusiness.Server.Migrations
                     b.Property<int>("IdCarac")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<bool>("Apartamento")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("Estacionamento")
                         .HasColumnType("tinyint(1)");
@@ -370,7 +367,7 @@ namespace DirectBusiness.Server.Migrations
                         .HasForeignKey("PessoaIdPessoa");
 
                     b.HasOne("DirectBusiness.Shared.TipoContrato", "TipoContrato")
-                        .WithMany()
+                        .WithMany("Contratos")
                         .HasForeignKey("TipoContratoIdTipoContrato");
                 });
 
@@ -381,14 +378,14 @@ namespace DirectBusiness.Server.Migrations
                         .HasForeignKey("PessoaIdPessoa");
 
                     b.HasOne("DirectBusiness.Shared.TipoImovel", "TipoImovel")
-                        .WithMany()
+                        .WithMany("Imoveis")
                         .HasForeignKey("TipoImovelIdTipoImovel");
                 });
 
             modelBuilder.Entity("DirectBusiness.Shared.Midia", b =>
                 {
                     b.HasOne("DirectBusiness.Shared.Imovel", "Imovel")
-                        .WithMany()
+                        .WithMany("Midias")
                         .HasForeignKey("ImovelIdImovel");
                 });
 
