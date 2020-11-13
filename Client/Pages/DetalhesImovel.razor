@@ -1,6 +1,9 @@
-@page "/imoveis/id"
+@page "/imoveis/{item}"
+@using System.Net.Http
+@inject HttpClient Http
+
 <div class="conteiner text-center">
-    <h1 class="ml-5 text-center">Card title</h1>
+    <h1 class="ml-5 text-center">@imovel.TipoImovel</h1>
     <div class="container">
         <div class="row">
             <div class="col mb-6">
@@ -46,19 +49,20 @@
             </div>
 
             <div class="col mb-6">
-                <span class="badge badge-primary"> Aluguel </span>
-                <span class="badge badge-secondary"> Venda </span>
+                <span class="badge badge-primary"> @imovel.Status </span>
 
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> 3 Quartos </li>
-                    <li class="list-group-item"> 2 Banheiros </li>
-                    <li class="list-group-item"> Vaga para 2 carros </li>
-                    <li class="list-group-item"> 3 Quartos </li>
-                    <li class="list-group-item"> 2 Banheiros </li>
-                    <li class="list-group-item"> Vaga para 2 carros </li>
+                    <li class="list-group-item"> @imovel.Descricao </li>
                 </ul>
 
-                <br/>
+                <hr>
+                <h4>Localização</h4>
+                @imovel.Logradouro, @imovel.Numero <br/>
+                @imovel.Bairro - @imovel.Cidade / @imovel.UF - CEP: @imovel.CEP
+
+                <hr>
+
+                <h3>R$ @imovel.Valor</h3>
 
                 <button id="Alugar" class="btn btnAmarelo btn-block active">Enviar proposta</button>
             </div>
@@ -77,3 +81,19 @@
         </div>
     </div>
 </div>
+
+@code {
+    private Imovel imovel = new Imovel();
+    private EditContext editContext { get; set; }
+    //private List<TipoImovel> tipoList = new List<TipoImovel>();
+
+    [Parameter]
+    public string Item { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var itemId = Item;
+        imovel = await Http.GetFromJsonAsync<Imovel>($"/Imovel/GetById?id={itemId}");
+        editContext = new EditContext(imovel);
+    }
+}

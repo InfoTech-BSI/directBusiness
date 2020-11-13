@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-
-using System;
 
 namespace DirectBusiness.Server.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,16 +16,16 @@ namespace DirectBusiness.Server.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Email = table.Column<string>(nullable: false),
                     Renda = table.Column<double>(nullable: false),
-                    Telefone = table.Column<string>(nullable: false),
+                    Telefone = table.Column<string>(maxLength: 15, nullable: false),
+                    CEP = table.Column<string>(maxLength: 9, nullable: false),
                     Endereco = table.Column<string>(nullable: false),
-                    CEP = table.Column<string>(nullable: false),
                     Bairro = table.Column<string>(nullable: false),
                     Numero = table.Column<string>(nullable: false),
                     Cidade = table.Column<string>(nullable: false),
                     Complemento = table.Column<string>(nullable: true),
                     Uf = table.Column<string>(maxLength: 2, nullable: false),
-                    Login = table.Column<string>(nullable: false),
-                    Senha = table.Column<string>(nullable: false)
+                    Login = table.Column<string>(maxLength: 50, nullable: false),
+                    Senha = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,16 +46,40 @@ namespace DirectBusiness.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoImovel",
+                name: "Imovel",
                 columns: table => new
                 {
-                    IdTipoImovel = table.Column<int>(nullable: false)
+                    IdImovel = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Descricao = table.Column<string>(nullable: false)
+                    TipoImovel = table.Column<string>(nullable: true),
+                    IdPessoa = table.Column<int>(nullable: false),
+                    PessoaIdPessoa = table.Column<int>(nullable: true),
+                    Matricula = table.Column<int>(nullable: false),
+                    Descricao = table.Column<string>(nullable: false),
+                    CEP = table.Column<string>(nullable: false),
+                    Logradouro = table.Column<string>(nullable: false),
+                    Bairro = table.Column<string>(nullable: false),
+                    Numero = table.Column<int>(nullable: false),
+                    Cidade = table.Column<string>(nullable: false),
+                    Complemento = table.Column<string>(nullable: true),
+                    UF = table.Column<string>(maxLength: 2, nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(15,2)", nullable: false),
+                    Status = table.Column<string>(nullable: false),
+                    QtdeQuartos = table.Column<int>(nullable: false),
+                    QtdeBanheiros = table.Column<int>(nullable: false),
+                    Estacionamento = table.Column<bool>(nullable: false),
+                    Metragem = table.Column<double>(nullable: false),
+                    Mobiliado = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoImovel", x => x.IdTipoImovel);
+                    table.PrimaryKey("PK_Imovel", x => x.IdImovel);
+                    table.ForeignKey(
+                        name: "FK_Imovel_Pessoa_PessoaIdPessoa",
+                        column: x => x.PessoaIdPessoa,
+                        principalTable: "Pessoa",
+                        principalColumn: "IdPessoa",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,8 +90,8 @@ namespace DirectBusiness.Server.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PessoaIdPessoa = table.Column<int>(nullable: true),
                     EstadoCivil = table.Column<string>(nullable: false),
-                    RG = table.Column<string>(nullable: false),
-                    CPF = table.Column<string>(nullable: false),
+                    RG = table.Column<string>(maxLength: 12, nullable: false),
+                    CPF = table.Column<string>(maxLength: 14, nullable: false),
                     DataNascimento = table.Column<DateTime>(nullable: false),
                     Nome = table.Column<string>(nullable: false)
                 },
@@ -102,71 +125,6 @@ namespace DirectBusiness.Server.Migrations
                         column: x => x.PessoaIdPessoa,
                         principalTable: "Pessoa",
                         principalColumn: "IdPessoa",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Imovel",
-                columns: table => new
-                {
-                    IdImovel = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdTipoImovel = table.Column<int>(nullable: false),
-                    TipoImovelIdTipoImovel = table.Column<int>(nullable: true),
-                    IdPessoa = table.Column<int>(nullable: false),
-                    PessoaIdPessoa = table.Column<int>(nullable: true),
-                    Matricula = table.Column<int>(nullable: false),
-                    Descricao = table.Column<string>(nullable: false),
-                    Logradouro = table.Column<string>(nullable: false),
-                    Bairro = table.Column<string>(nullable: false),
-                    Numero = table.Column<int>(nullable: false),
-                    Cidade = table.Column<string>(nullable: false),
-                    Complemento = table.Column<string>(nullable: false),
-                    UF = table.Column<string>(maxLength: 2, nullable: false),
-                    Valor = table.Column<double>(nullable: false),
-                    Status = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Imovel", x => x.IdImovel);
-                    table.ForeignKey(
-                        name: "FK_Imovel_Pessoa_PessoaIdPessoa",
-                        column: x => x.PessoaIdPessoa,
-                        principalTable: "Pessoa",
-                        principalColumn: "IdPessoa",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Imovel_TipoImovel_TipoImovelIdTipoImovel",
-                        column: x => x.TipoImovelIdTipoImovel,
-                        principalTable: "TipoImovel",
-                        principalColumn: "IdTipoImovel",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CaracteristicaImovel",
-                columns: table => new
-                {
-                    IdCarac = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    IdImovel = table.Column<int>(nullable: false),
-                    ImovelIdImovel = table.Column<int>(nullable: true),
-                    QtdeQuartos = table.Column<int>(nullable: false),
-                    QtdeBanheiros = table.Column<int>(nullable: false),
-                    Estacionamento = table.Column<bool>(nullable: false),
-                    Metragem = table.Column<double>(nullable: false),
-                    Pets = table.Column<bool>(nullable: false),
-                    Mobiliado = table.Column<bool>(nullable: false),
-                    Apartamento = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CaracteristicaImovel", x => x.IdCarac);
-                    table.ForeignKey(
-                        name: "FK_CaracteristicaImovel_Imovel_ImovelIdImovel",
-                        column: x => x.ImovelIdImovel,
-                        principalTable: "Imovel",
-                        principalColumn: "IdImovel",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -240,11 +198,6 @@ namespace DirectBusiness.Server.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CaracteristicaImovel_ImovelIdImovel",
-                table: "CaracteristicaImovel",
-                column: "ImovelIdImovel");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Contrato_ImovelIdImovel",
                 table: "Contrato",
                 column: "ImovelIdImovel");
@@ -270,11 +223,6 @@ namespace DirectBusiness.Server.Migrations
                 column: "PessoaIdPessoa");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Imovel_TipoImovelIdTipoImovel",
-                table: "Imovel",
-                column: "TipoImovelIdTipoImovel");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Midia_ImovelIdImovel",
                 table: "Midia",
                 column: "ImovelIdImovel");
@@ -292,9 +240,6 @@ namespace DirectBusiness.Server.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "CaracteristicaImovel");
-
             migrationBuilder.DropTable(
                 name: "Contrato");
 
@@ -315,9 +260,6 @@ namespace DirectBusiness.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pessoa");
-
-            migrationBuilder.DropTable(
-                name: "TipoImovel");
         }
     }
 }

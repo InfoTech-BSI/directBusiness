@@ -4,17 +4,16 @@
 @inject NavigationManager NavigationManager
 
 <div class="container text-center">
-    <img src="img/eu.jpeg" class="rounded-circle" width="300" height="300" />
+    <img src="img/user.png" class="rounded-circle" width="200" height="200" />
 </div>
 
-<div class="card m-3 text-center">
-    <h4 class="card-header">Meu Perfil</h4>
+<div class="card m-3">
+    <h4 class="card-header text-center">Meu Perfil</h4>
     <div class="card-body">
-
         <EditForm Model="@pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
             <DataAnnotationsValidator />
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                     <label>Email</label>
                     <div>
                         <InputText class="form-control" @bind-Value="@pessoa.Email" />
@@ -22,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                     <label>Renda</label>
                     <div>
                         <InputNumber class="form-control" @bind-Value="@pessoa.Renda" />
@@ -30,76 +29,115 @@
                     </div>
                 </div>
 
-
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label>Telefone</label>
                     <div>
-                        <InputNumber class="form-control" @bind-Value="@pessoa.Telefone" />
+                        <InputText class="form-control" @bind-Value="@pessoa.Telefone" />
                         <ValidationMessage For="@( () => pessoa.Telefone )" />
                     </div>
                 </div>
 
 
+                <div class="form-group col-md-2">
+                    <Label>CEP</Label>
+                    <InputText @bind-Value="pessoa.CEP" id="cep" class="form-control input-cep"
+                        placeholder="CEP" />
+                    <ValidationMessage For="@(() =>  pessoa.CEP)" />
+                </div>
+
                 <div class="form-group col-md-6">
                     <label>Endereço</label>
                     <div>
-                        <InputText class="form-control" @bind-Value="@pessoa.Endereco" />
+                        <InputText class="form-control" @bind-Value="@pessoa.Endereco" id="endereco" />
                         <ValidationMessage For="@( () => pessoa.Endereco )" />
                     </div>
                 </div>
 
-
-                <div class="form-group col-md-6">
-                    <label>Bairro</label>
-                    <div>
-                        <InputText class="form-control" @bind-Value="@pessoa.Bairro" />
-                        <ValidationMessage For="@( () => pessoa.Bairro )" />
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label>Número</label>
                     <div>
-                        <InputNumber class="form-control" @bind-Value="@pessoa.Numero" />
+                        <InputText class="form-control" @bind-Value="@pessoa.Numero" id="numero"/>
                         <ValidationMessage For="@( () => pessoa.Numero )" />
                     </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label>Bairro</label>
+                    <div>
+                        <InputText class="form-control" @bind-Value="@pessoa.Bairro" id="bairro"/>
+                        <ValidationMessage For="@( () => pessoa.Bairro )" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
                     <label>Cidade</label>
                     <div>
-                        <InputText class="form-control" @bind-Value="@pessoa.Cidade" />
+                        <InputText class="form-control" @bind-Value="@pessoa.Cidade" id="cidade"/>
                         <ValidationMessage For="@( () => pessoa.Cidade )" />
                     </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-2">
+                    <label>UF</label>
+                    <div>
+                        <InputSelect @bind-Value="pessoa.Uf" name="Uf" class="form-control" id="UF">
+                            <option value=""> Selecione </option>
+                            <option value="AC"> Acre </option>
+                            <option value="AL"> Alagoas </option>
+                            <option value="AP"> Amapá </option>
+                            <option value="AM"> Amazonas </option>
+                            <option value="BA"> Bahia </option>
+                            <option value="CE"> Ceará </option>
+                            <option value="ES"> Espírito Santo </option>
+                            <option value="DF"> Distrito Federal </option>
+                            <option value="GO"> Goiás </option>
+                            <option value="MA"> Maranhão </option>
+                            <option value="MT"> Mato Grosso </option>
+                            <option value="MS"> Mato Grosso do Sul </option>
+                            <option value="MG"> Minas Gerais </option>
+                            <option value="PA"> Pará </option>
+                            <option value="PB"> Paraíba </option>
+                            <option value="PR"> Paraná </option>
+                            <option value="PE"> Pernambuco </option>
+                            <option value="PI"> Piauí </option>
+                            <option value="RJ"> Rio de Janeiro </option>
+                            <option value="RN"> Rio Grande do Norte </option>
+                            <option value="RS"> Rio Grande do Sul </option>
+                            <option value="RO"> Rondônia </option>
+                            <option value="RR"> Roraima </option>
+                            <option value="SC"> Santa Catarina </option>
+                            <option value="SP"> São Paulo </option>
+                            <option value="SE"> Sergipe </option>
+                            <option value="TO"> Tocantins </option>
+                        </InputSelect>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
                     <label>Complemento</label>
                     <div>
-                        <InputText class="form-control" @bind-Value="@pessoa.Complemento" />
+                        <InputText class="form-control" @bind-Value="@pessoa.Complemento" id="complemento"/>
                         <ValidationMessage For="@( () => pessoa.Complemento )" />
                     </div>
                 </div>
 
-
-                <div class="form-group col-md-6">
-                    <label>UF</label>
-                    <div>
-                        <InputText class="form-control" @bind-Value="@pessoa.Uf" />
-                        <ValidationMessage For="@( () => pessoa.Uf )" />
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6">
+                @* <div class="form-group col-md-6">
                     <label>Senha</label>
                     <div>
                         <InputText class="form-control" @bind-Value="@pessoa.Senha" />
                         <ValidationMessage For="@( () => pessoa.Senha )" />
                     </div>
+
                 </div>
                 <div class="row justify-content-md-center">
+                </div> *@
+
             </div>
 
+            <div class="text-center">
+                <a class="btn btn-secondary" href="javascript:history.back()">Voltar</a>
+                <a href="/"><button class="btn btn-success">Meus imóveis</button></a>
+                @* /animal/EditAnimal/@item.IdAnimal.ToString() *@
             </div>
         </EditForm>
     </div>
@@ -113,7 +151,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-
         pessoa = await Http.GetFromJsonAsync<Pessoa>($"/Pessoa");
         editContext = new EditContext(pessoa);
     }
