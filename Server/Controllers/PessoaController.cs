@@ -106,11 +106,11 @@ namespace DirectBusiness.Server.Controllers
             return Ok();
         }
 
-        // [HttpPost]
-        // [Route("Login")]
-        // public async Task<IActionResult> Login([FromForm] Pessoa pessoa }){
-        //     var usuario = await banco.Pessoa.FirstOrDefaultAsync<Pessoa>(p => p.Email == pessoa.Email && p.Senha == pessoa.Senha);
-        //     return Ok(usuario);
-        // }
+        [HttpGet]
+        [Route("Login/{login}&{senha}")]
+        public async Task<IActionResult> Login([FromRoute] string login, string senha ){
+            var usuario = await banco.Pessoa.FirstOrDefaultAsync<Pessoa>(p => p.Login == login && p.Senha == senha);
+            return Ok(usuario);
+        }
     }
 }

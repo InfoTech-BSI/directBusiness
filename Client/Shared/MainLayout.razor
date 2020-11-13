@@ -144,9 +144,9 @@
             <EditForm Model="pessoa" OnValidSubmit="HandleValidSubmit" @onreset="HandleReset">
                 <DataAnnotationsValidator/>
                 <div class="form-group">
-                    <label for="inputEmail"> Email ou CPF/CNPJ </label>
-                    <InputText placeholder="Email" class="form-control" id="inputEmail" @bind-Value="pessoa.Email"/>
-                    <ValidationMessage For="@( () => pessoa.Email )" />
+                    <label for="inputEmail"> Usuário </label>
+                    <InputText placeholder="Nome de usuário" class="form-control" id="inputEmail" @bind-Value="pessoa.Login"/>
+                    <ValidationMessage For="@( () => pessoa.Login )" />
                 </div>
                 <div class="form-group">
                     <label for="inputSenha"> Senha </label>
@@ -210,28 +210,15 @@
     private Pessoa pessoa = new Pessoa();
     private EditContext editContext { get; set; }
 
-    private HttpResponseMessage mensagem;
+    private string mensagem;
 
     private async Task HandleValidSubmit()
     {
-        pessoa.Login = "#########";
-        pessoa.Renda = 1;
-        pessoa.Telefone = "###############";
-        pessoa.CEP = "#########";
-        pessoa.Endereco = "#";
-        pessoa.Bairro = "#";
-        pessoa.Numero = "#";
-        pessoa.Cidade = "#";
-        pessoa.Complemento = "#";
-        pessoa.Uf = "#";
-        var usuario = await Http.PostAsJsonAsync<Pessoa>("/Pessoa/Login", pessoa);
-        mensagem = usuario;
-        /*Console.WriteLine(usuario);
-        if(usuario.IsSuccessStatusCode){
+        var login = pessoa.Login;
+        var senha = pessoa.Senha;
+        var usuario = await Http.GetFromJsonAsync<Pessoa>($"/Pessoa/Login/{login}&{senha}");
+        //mensagem = usuario.Endereco;
             NavigationManager.NavigateTo("/imoveis");
-        }else{
-            NavigationManager.NavigateTo("/CriarConta");
-        }*/
     }
 
     private void HandleReset()
