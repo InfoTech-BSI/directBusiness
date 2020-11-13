@@ -26,13 +26,6 @@ namespace DirectBusiness.Server.Controllers
             return Ok(pessoas);
         }
 
-        // [HttpPost]
-        // [Route("Login")]
-        // public async Task<IActionResult> Login([FromBody] Pessoa pessoa }){
-        //     var usuario = await banco.Pessoa.FirstOrDefaultAsync<Pessoa>(p => p.Email == pessoa.Email && p.Senha == pessoa.Senha);
-        //     return Ok(usuario);
-        // }
-
         [HttpGet]
         [Route("List/{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
@@ -112,5 +105,12 @@ namespace DirectBusiness.Server.Controllers
             await banco.SaveChangesAsync();
             return Ok();
         }
+
+        // [HttpPost]
+        // [Route("Login")]
+        // public async Task<IActionResult> Login([FromForm] Pessoa pessoa }){
+        //     var usuario = await banco.Pessoa.FirstOrDefaultAsync<Pessoa>(p => p.Email == pessoa.Email && p.Senha == pessoa.Senha);
+        //     return Ok(usuario);
+        // }
     }
 }
