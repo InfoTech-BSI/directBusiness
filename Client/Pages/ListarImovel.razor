@@ -1,0 +1,45 @@
+@page  "/imovel/list"
+@using System.Net.Http
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Imoveis</h3>
+
+<div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome Imovel</th>
+                <th scope="col">Tipo Imovel</th>
+                <th scope="col">Cidade</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in listaImovel)
+            {
+            <tr>
+                <td>@item.Descricao</td>
+                <td>@item.TipoImovel</td>
+                <td>@item.Cidade</td>
+                <td>
+                    <a href="/Imovel/ListarImovel/@item.IdImovel.ToString()"><button class="btn btn-success">Editar</button></a>
+                </td>
+            </tr>
+            }   
+        </tbody>
+    </table>
+</div>
+@code {
+
+    private List<Imovel> listaImovel = new List<Imovel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var imoveis = await Http.GetFromJsonAsync<List<Imovel>>("/Imovel/List");
+        foreach (var item in imoveis)
+        {
+            listaImovel.Add(item);
+        }
+    }
+}
