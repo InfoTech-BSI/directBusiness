@@ -1,0 +1,95 @@
+@page "/negociacao"
+@using System.Net.Http
+@inject HttpClient Http
+@using Microsoft.AspNetCore.SignalR.Client;
+@inject NavigationManager NavigationManager
+@implements IAsyncDisposable
+
+<input @bind="userInput" />
+<input @bind="userOutput" />
+<br><br>
+
+<div class="row  col-md-8 col-12">
+    <div class="form-group col-md-6 col-12">
+        <div class="min-vh-500">
+            @foreach (var item in mensagens)
+            {
+                @if(item.remetente == userInput)
+                {
+                    <div class="d-flex flex-row-reverse">
+                        <p class="text-justufy">@item.texto</p><br>
+                    </div>
+                }
+                else{
+                    <div class="d-flex flex-row">
+                        <p class="text-justufy">@item.texto</p><br>
+                    </div>
+                }
+            }
+        </div>
+        <div class="form-group">
+            <input @bind="messageInput" />
+            <button class="btn btn-primary" @onclick="Send" >Enviar</button>
+        </div>
+    </div>
+    
+    <div class="form-group col-md-3 col-12">
+        <div class="form-group">
+            <ul>
+                <li>3 quartos</li>
+                <li>2 banheiros</li>
+                <li>35 m²</li>
+                <li>piscina</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code{
+    private HubConnection hubConnection;
+    private List<Mensagem> mensagens = new List<Mensagem>();
+    private string userInput;
+    private string userOutput;
+    private string messageInput;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+            .Build();
+        
+        hubConnection.On<string, string, string>("ReceiveMessage", (remetente, destinatario, message) => 
+        {
+            var encodeMsg = message;
+            if(remetente.Equals(userInput, StringComparison.OrdinalIgnoreCase) || destinatario.Equals(userInput, StringComparison.OrdinalIgnoreCase))
+            {
+                mensagens.Add(new Mensagem(remetente, destinatario, encodeMsg));
+            }
+            
+            StateHasChanged();
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    Task Send() => hubConnection.SendAsync("SendMessage", userInput, userOutput, messageInput);
+
+    public bool IsConnected() => !(hubConnection.State == HubConnectionState.Connected);
+
+    public async ValueTask DisposeAsync()
+    {
+        await hubConnection.DisposeAsync();
+    }
+
+    private class Mensagem
+    {
+        public Mensagem(string remet, string dest, string text){
+            this.remetente = remet;
+            this.destinatario = dest;
+            this.texto = text;
+        }
+        public string remetente { get; set; }
+        public string destinatario { get; set; }
+        public string texto { get; set; }
+    }
+}
